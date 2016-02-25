@@ -1,3 +1,5 @@
-Read me document.
+#README
 
-Heu de posar Hello I'm (el vostre nom) al altre document.
+Puzzle Bobble Project
+
+
