@@ -8,9 +8,9 @@
 #include "ModuleCollision.h"
 
 #define MAX_ACTIVE_PARTICLES 100
-#define NUMBER_BUBBLES 8
+#define NUMBER_BUBBLES 9
 
-enum Colour { BLUE, RED, YELLOW, GREEN, ORANGE, PURPLE, BLACK, WHITE };
+enum Colour { EMPTY, BLUE, RED, YELLOW, GREEN, ORANGE, PURPLE, BLACK, WHITE };
 
 struct SDL_Texture;
 
@@ -29,6 +29,7 @@ struct Particle
 	Particle(const Particle& p);
 	bool Update();
 	Colour bubble_colour;
+	//Vector <Sphere*> allahu_list;
 };
 
 class ModuleParticles : public Module
@@ -43,6 +44,7 @@ public:
 
 	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE type, Uint32 delay = 0);
 	void OnCollision(Collider*, Collider*);
+	bool nextSphere = true;
 
 private:
 
@@ -51,8 +53,8 @@ private:
 	uint last_particle = 0;
 
 public:
-	/*
-	Particle blueBubble;
+
+	/*Particle blueBubble;
 	Particle redBubble;
 	Particle yellowBubble;
 	Particle greenBubble;
