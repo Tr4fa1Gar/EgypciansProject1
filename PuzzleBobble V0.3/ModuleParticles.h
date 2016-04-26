@@ -8,9 +8,9 @@
 #include "ModuleCollision.h"
 
 #define MAX_ACTIVE_PARTICLES 100
-#define NUMBER_BUBBLES 9
+#define NUMBER_BUBBLES 5
 
-enum Colour { EMPTY, BLUE, RED, YELLOW, GREEN, ORANGE, PURPLE, BLACK, WHITE };
+enum Colour { BLUE, RED, YELLOW, GREEN, ORANGE, PURPLE, BLACK, WHITE };
 
 struct SDL_Texture;
 

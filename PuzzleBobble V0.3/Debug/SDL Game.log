@@ -1,32 +1,12 @@
-﻿Build started 25/04/2016 12:31:31.
-     1>Project "C:\Users\guillemaj\Desktop\Puzzle Bobble 2\PuzzleBobble V0.3\SDL Game.vcxproj" on node 2 (Build target(s)).
+﻿Build started 25/04/2016 23:42:31.
+     1>Project "C:\Users\Guillem\Desktop\Puzzle Bobble 2\PuzzleBobble V0.3\SDL Game.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Application.cpp ModuleParticles.cpp ModulePlayer.cpp ModuleSceneCredits.cpp ModuleSceneGameOver.cpp ModuleSceneLevel1.cpp ModuleSceneMode.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ModuleParticles.cpp
          ModuleParticles.cpp
-     1>c:\users\guillemaj\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleparticles.cpp(154): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\guillemaj\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleparticles.cpp(155): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\guillemaj\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleparticles.cpp(232): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\guillemaj\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleparticles.cpp(233): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
-         Generating Code...
-         Compiling...
-         ModuleSceneMode.cpp
-         ModuleSceneLevel1.cpp
-         ModuleSceneGameOver.cpp
-         ModuleSceneCredits.cpp
-         ModulePlayer.cpp
-     1>c:\users\guillemaj\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleplayer.cpp(57): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\guillemaj\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleplayer.cpp(119): warning C4305: '+=' : truncation from 'double' to 'float'
-     1>c:\users\guillemaj\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleplayer.cpp(120): warning C4305: '+=' : truncation from 'double' to 'float'
-     1>c:\users\guillemaj\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleplayer.cpp(123): warning C4305: '+=' : truncation from 'double' to 'float'
-     1>c:\users\guillemaj\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleplayer.cpp(124): warning C4305: '-=' : truncation from 'double' to 'float'
-     1>c:\users\guillemaj\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleplayer.cpp(137): warning C4305: '-=' : truncation from 'double' to 'float'
-     1>c:\users\guillemaj\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleplayer.cpp(138): warning C4305: '+=' : truncation from 'double' to 'float'
-     1>c:\users\guillemaj\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleplayer.cpp(141): warning C4305: '-=' : truncation from 'double' to 'float'
-     1>c:\users\guillemaj\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleplayer.cpp(142): warning C4305: '-=' : truncation from 'double' to 'float'
-         Application.cpp
-         Generating Code...
+     1>c:\users\guillem\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleparticles.cpp(218): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\guillem\desktop\puzzle bobble 2\puzzlebobble v0.3\moduleparticles.cpp(219): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\guillemaj\Desktop\Puzzle Bobble 2\PuzzleBobble V0.3\Debug\SDL6 Handout.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\guillemaj\Desktop\Puzzle Bobble 2\PuzzleBobble V0.3\Debug\SDL6 Handout.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\guillemaj\Desktop\Puzzle Bobble 2\PuzzleBobble V0.3\Debug\SDL6 Handout.lib" /MACHINE:X86 Debug\Application.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Guillem\Desktop\Puzzle Bobble 2\PuzzleBobble V0.3\Debug\SDL6 Handout.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Guillem\Desktop\Puzzle Bobble 2\PuzzleBobble V0.3\Debug\SDL6 Handout.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Guillem\Desktop\Puzzle Bobble 2\PuzzleBobble V0.3\Debug\SDL6 Handout.lib" /MACHINE:X86 Debug\Application.obj
          Debug\Audio.obj
          Debug\Enemy.obj
          Debug\Globals.obj
@@ -43,9 +23,9 @@
          Debug\ModuleSceneGameOver.obj
          Debug\ModuleTextures.obj
          Debug\ModuleWindow.obj
-         SDL Game.vcxproj -> C:\Users\guillemaj\Desktop\Puzzle Bobble 2\PuzzleBobble V0.3\Debug\SDL6 Handout.exe
-     1>Done Building Project "C:\Users\guillemaj\Desktop\Puzzle Bobble 2\PuzzleBobble V0.3\SDL Game.vcxproj" (Build target(s)).
+         SDL Game.vcxproj -> C:\Users\Guillem\Desktop\Puzzle Bobble 2\PuzzleBobble V0.3\Debug\SDL6 Handout.exe
+     1>Done Building Project "C:\Users\Guillem\Desktop\Puzzle Bobble 2\PuzzleBobble V0.3\SDL Game.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.82
+Time Elapsed 00:00:01.08

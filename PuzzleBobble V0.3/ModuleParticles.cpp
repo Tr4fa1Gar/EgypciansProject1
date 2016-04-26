@@ -27,159 +27,103 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	bubbles = App->textures->Load("puzzlebobble2/balls.png");
 	// Bubble particle blue
-	
-	sphere[BLUE].anim.PushBack({ 47, 37, 16, 16 });
-	sphere[BLUE].anim.PushBack({ 67, 37, 16, 16 });
-	sphere[BLUE].anim.PushBack({ 87, 37, 16, 16 });
+	sphere[0].anim.PushBack({ 47, 37, 16, 16 });
+	sphere[0].anim.PushBack({ 67, 37, 16, 16 });
+	sphere[0].anim.PushBack({ 87, 37, 14, 16 });
 
-	sphere[BLUE].anim.loop = false;
-	sphere[BLUE].anim.speed = 0.5f;
+	sphere[0].anim.loop = false;
+	sphere[0].anim.speed = 0.5f;
 
-	sphere[BLUE].life = 2000;
-	sphere[BLUE].ParticlePosition.x = 155;
-	sphere[BLUE].ParticlePosition.y = 195;
+	sphere[0].life = 2000;
+	sphere[0].ParticlePosition.x = 155;
+	sphere[0].ParticlePosition.y = 195;
 
 	//////////////////////////RED bubble/////////////////////////////////
 
-	sphere[RED].anim.PushBack({ 26, 63, 16, 16 });
-	sphere[RED].anim.PushBack({ 46, 63, 16, 16 });
-	sphere[RED].anim.PushBack({ 106, 63, 16, 16 });
-	sphere[RED].anim.PushBack({ 127, 63, 16, 16 });
-	sphere[RED].anim.PushBack({ 147, 63, 16, 16 });
-	sphere[RED].anim.PushBack({ 167, 63, 16, 16 });
-	sphere[RED].anim.PushBack({ 187, 63, 16, 16 });
-	sphere[RED].anim.PushBack({ 207, 63, 16, 16 });
+	sphere[1].anim.PushBack({ 26, 63, 16, 16 });
+	sphere[1].anim.PushBack({ 46, 63, 16, 16 });
+	sphere[1].anim.PushBack({ 106, 63, 16, 16 });
+	sphere[1].anim.PushBack({ 127, 63, 16, 16 });
+	sphere[1].anim.PushBack({ 147, 63, 16, 16 });
+	sphere[1].anim.PushBack({ 167, 63, 16, 16 });
+	sphere[1].anim.PushBack({ 187, 63, 16, 16 });
+	sphere[1].anim.PushBack({ 207, 63, 16, 16 });
 	//start to pop
-	/*sphere[RED].anim.PushBack({ 227, 61, 19, 20 });
-	sphere[RED].anim.PushBack({ 252, 60, 23, 23 });*/
+	/*sphere[1].anim.PushBack({ 227, 61, 19, 20 });
+	sphere[1].anim.PushBack({ 252, 60, 23, 23 });*/
 
-	sphere[RED].anim.loop = false;
-	sphere[RED].anim.speed = 0.5f;
+	sphere[1].anim.loop = false;
+	sphere[1].anim.speed = 0.5f;
 
-	sphere[RED].life = 2000;
-	sphere[RED].ParticlePosition.x = 155;
-	sphere[RED].ParticlePosition.y = 195;
+	sphere[1].life = 2000;
+	sphere[1].ParticlePosition.x = 155;
+	sphere[1].ParticlePosition.y = 195;
 
 	///////////////////////////yellow bubble/////////////////
 
-	sphere[YELLOW].anim.PushBack({ 26, 90, 16, 16 });
-	sphere[YELLOW].anim.PushBack({ 46, 90, 16, 16 });
-	sphere[YELLOW].anim.PushBack({ 66, 90, 16, 16 });
-	sphere[YELLOW].anim.PushBack({ 86, 90, 16, 16 });
-	sphere[YELLOW].anim.PushBack({ 106, 90, 16, 16 });
-	sphere[YELLOW].anim.PushBack({ 127, 90, 16, 16 });
-	sphere[YELLOW].anim.PushBack({ 147, 90, 16, 16 });
-	sphere[YELLOW].anim.PushBack({ 167, 90, 16, 16 });
-	sphere[YELLOW].anim.PushBack({ 187, 90, 16, 16 });
-	sphere[YELLOW].anim.PushBack({ 207, 90, 16, 16 });
+	sphere[2].anim.PushBack({ 26, 90, 16, 16 });
+	sphere[2].anim.PushBack({ 46, 90, 16, 16 });
+	sphere[2].anim.PushBack({ 66, 90, 16, 16 });
+	sphere[2].anim.PushBack({ 86, 90, 16, 16 });
+	sphere[2].anim.PushBack({ 106, 90, 16, 16 });
+	sphere[2].anim.PushBack({ 127, 90, 16, 16 });
+	sphere[2].anim.PushBack({ 147, 90, 16, 16 });
+	sphere[2].anim.PushBack({ 167, 90, 16, 16 });
+	sphere[2].anim.PushBack({ 187, 90, 16, 16 });
+	sphere[2].anim.PushBack({ 207, 90, 16, 16 });
 	//start to pop
-	/*sphere[YELLOW].anim.PushBack({ 227, 88, 19, 20 });
-	sphere[YELLOW].anim.PushBack({ 252, 87, 23, 23 });
+	/*yellowBubble.anim.PushBack({ 227, 88, 19, 20 });
+	yellowBubble.anim.PushBack({ 252, 87, 23, 23 });
 	*/
-	sphere[YELLOW].anim.loop = false;
-	sphere[YELLOW].anim.speed = 0.5f;
+	sphere[2].anim.loop = false;
+	sphere[2].anim.speed = 0.5f;
 
-	sphere[YELLOW].life = 2000;
-	sphere[YELLOW].ParticlePosition.x = 155;
-	sphere[YELLOW].ParticlePosition.y = 195;
+	sphere[2].life = 2000;
+	sphere[2].ParticlePosition.x = 155;
+	sphere[2].ParticlePosition.y = 195;
 
 	//////////////////////////green bubble////////////////////////
 
-	sphere[GREEN].anim.PushBack({ 26, 117, 16, 16 });
-	sphere[GREEN].anim.PushBack({ 46, 117, 16, 16 });
-	sphere[GREEN].anim.PushBack({ 106, 117, 16, 16 });
-	sphere[GREEN].anim.PushBack({ 127, 117, 16, 16 });
-	sphere[GREEN].anim.PushBack({ 147, 117, 16, 16 });
-	sphere[GREEN].anim.PushBack({ 167, 117, 16, 16 });
-	sphere[GREEN].anim.PushBack({ 187, 117, 16, 16 });
-	sphere[GREEN].anim.PushBack({ 207, 117, 16, 16 });
+	sphere[3].anim.PushBack({ 26, 117, 16, 16 });
+	sphere[3].anim.PushBack({ 46, 117, 16, 16 });
+	sphere[3].anim.PushBack({ 106, 117, 16, 16 });
+	sphere[3].anim.PushBack({ 127, 117, 16, 16 });
+	sphere[3].anim.PushBack({ 147, 117, 16, 16 });
+	sphere[3].anim.PushBack({ 167, 117, 16, 16 });
+	sphere[3].anim.PushBack({ 187, 117, 16, 16 });
+	sphere[3].anim.PushBack({ 207, 117, 16, 16 });
 	//start to pop
-	/*sphere[GREEN].anim.PushBack({ 227, 115, 19, 20 });
-	sphere[GREEN.anim.PushBack({ 252, 114, 23, 23 });
+	/*sphere[3].anim.PushBack({ 227, 115, 19, 20 });
+	sphere[3].anim.PushBack({ 252, 114, 23, 23 });
 	*/
-	sphere[GREEN].anim.loop = false;
-	sphere[GREEN].anim.speed = 0.5f;
+	sphere[3].anim.loop = false;
+	sphere[3].anim.speed = 0.5f;
 
-	sphere[GREEN].life = 2000;
-	sphere[GREEN].ParticlePosition.x = 155;
-	sphere[GREEN].ParticlePosition.y = 195;
+	sphere[3].life = 2000;
+	sphere[3].ParticlePosition.x = 155;
+	sphere[3].ParticlePosition.y = 195;
 
 	////////////////////////purple bubble///////////////////////////
 
-	sphere[PURPLE].anim.PushBack({ 26, 144, 16, 16 });
-	sphere[PURPLE].anim.PushBack({ 46, 144, 16, 16 });
-	sphere[PURPLE].anim.PushBack({ 106, 144, 16, 16 });
-	sphere[PURPLE].anim.PushBack({ 127, 144, 16, 16 });
-	sphere[PURPLE].anim.PushBack({ 147, 144, 16, 16 });
-	sphere[PURPLE].anim.PushBack({ 167, 144, 16, 16 });
-	sphere[PURPLE].anim.PushBack({ 187, 144, 16, 16 });
-	sphere[PURPLE].anim.PushBack({ 207, 144, 16, 16 });
+	sphere[4].anim.PushBack({ 26, 144, 16, 16 });
+	sphere[4].anim.PushBack({ 46, 144, 16, 16 });
+	sphere[4].anim.PushBack({ 106, 144, 16, 16 });
+	sphere[4].anim.PushBack({ 127, 144, 16, 16 });
+	sphere[4].anim.PushBack({ 147, 144, 16, 16 });
+	sphere[4].anim.PushBack({ 167, 144, 16, 16 });
+	sphere[4].anim.PushBack({ 187, 144, 16, 16 });
+	sphere[4].anim.PushBack({ 207, 144, 16, 16 });
 	//start to pop
-	/*sphere[PURPLE].anim.PushBack({ 227, 143, 19, 20 });
-	sphere[PURPLE].anim.PushBack({ 252, 142, 23, 23 });
+	/*sphere[4].anim.PushBack({ 227, 143, 19, 20 });
+	sphere[4].anim.PushBack({ 252, 142, 23, 23 });
 	*/
-	sphere[PURPLE].anim.loop = false;
-	sphere[PURPLE].anim.speed = 0.5f;
+	sphere[4].anim.loop = false;
+	sphere[4].anim.speed = 0.5f;
 
-	sphere[PURPLE].life = 2000;
-	sphere[PURPLE].ParticlePosition.x = 155;
-	sphere[PURPLE].ParticlePosition.y = 195;
-	//////////////////orange/////////////////////////////////
-	sphere[ORANGE].anim.PushBack({ 26, 171, 16, 16 });
-	sphere[ORANGE].anim.PushBack({ 46, 171, 16, 16 });
-	sphere[ORANGE].anim.PushBack({ 106, 171, 16, 16 });
-	sphere[ORANGE].anim.PushBack({ 127, 171, 16, 16 });
-	sphere[ORANGE].anim.PushBack({ 147, 171, 16, 16 });
-	sphere[ORANGE].anim.PushBack({ 167, 171, 16, 16 });
-	sphere[ORANGE].anim.PushBack({ 187, 171, 16, 16 });
-	sphere[ORANGE].anim.PushBack({ 207, 171, 16, 16 });
-	//start to pop
-	/*sphere[4].anim.PushBack({ 227, 170, 19, 20 });
-	sphere[4].anim.PushBack({ 252, 169, 23, 23 });
-	*/
-	sphere[ORANGE].anim.loop = false;
-	sphere[ORANGE].anim.speed = 0.5f;
-		   
-	sphere[ORANGE].life = 2000;
-	sphere[ORANGE].ParticlePosition.x = 155;
-	sphere[ORANGE].ParticlePosition.y = 195;
-	///////////////////////BLACK///////////////////////////
-	sphere[BLACK].anim.PushBack({ 26, 198, 16, 16 });
-	sphere[BLACK].anim.PushBack({ 46, 198, 16, 16 });
-	sphere[BLACK].anim.PushBack({ 106, 198, 16, 16 });
-	sphere[BLACK].anim.PushBack({ 127, 198, 16, 16 });
-	sphere[BLACK].anim.PushBack({ 147, 198, 16, 16 });
-	sphere[BLACK].anim.PushBack({ 167, 198, 16, 16 });
-	sphere[BLACK].anim.PushBack({ 187, 198, 16, 16 });
-	sphere[BLACK].anim.PushBack({ 207, 198, 16, 16 });
-	//start to pop
-	/*sphere[BLACK].anim.PushBack({ 227, 197, 19, 20 });
-	sphere[BLACK].anim.PushBack({ 252, 196, 23, 23 });
-	*/
-	sphere[BLACK].anim.loop = false;
-	sphere[BLACK].anim.speed = 0.5f;
-		  
-	sphere[BLACK].life = 2000;
-	sphere[BLACK].ParticlePosition.x = 155;
-	sphere[BLACK].ParticlePosition.y = 195;
-	//////////////////////////WHITE/////////////////
-	sphere[WHITE].anim.PushBack({ 46, 225, 16, 16 });
-	sphere[WHITE].anim.PushBack({ 106, 225, 16, 16 });
-	sphere[WHITE].anim.PushBack({ 127, 225, 16, 16 });
-	sphere[WHITE].anim.PushBack({ 147, 225, 16, 16 });
-	sphere[WHITE].anim.PushBack({ 167, 225, 16, 16 });
-	sphere[WHITE].anim.PushBack({ 187, 225, 16, 16 });
-	sphere[WHITE].anim.PushBack({ 207, 225, 16, 16 });
-	//start to pop
-	/*sphere[WHITE].anim.PushBack({ 227, 224, 19, 20 });
-	sphere[WHITE].anim.PushBack({ 252, 223, 23, 23 });
-	*/	  
-	sphere[WHITE].anim.loop = false;
-	sphere[WHITE].anim.speed = 0.5f;
-		   
-	sphere[WHITE].life = 2000;
-	sphere[WHITE].ParticlePosition.x = 155;
-	sphere[WHITE].ParticlePosition.y = 195;
+	sphere[4].life = 2000;
+	sphere[4].ParticlePosition.x = 155;
+	sphere[4].ParticlePosition.y = 195;
+
 
 	return true;
 }

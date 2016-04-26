@@ -25,6 +25,7 @@ public:
 	SDL_Texture* arrowGraphics = nullptr;
 	SDL_Texture* dragonGraphics = nullptr;
 	
+	
 
 
 	Animation* current_animationMachine = nullptr;

@@ -6,6 +6,8 @@
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
 #include "Audio.h"
+#include <time.h>
+#include <stdlib.h>
 #include "SDL\include\SDL_render.h"
 
 
@@ -14,6 +16,7 @@ ModulePlayer::ModulePlayer()
 {
 	dragonGraphics = NULL;
 	arrowGraphics = NULL;
+	
 	current_animation1 = NULL;
 	current_animationMachine = NULL;
 
@@ -71,11 +74,13 @@ bool ModulePlayer::Start()
 {
 	LOG("Loading player");
 
+	srand(time(NULL));
 	// arrow & dragon & bubble
 	
 	arrowGraphics = App->textures->Load("puzzlebobble2/arrows.png");
 	dragonGraphics = App->textures->Load("puzzlebobble2/dragon.png");
-	Ydirection = 0;
+	
+	Ydirection = -8;
 	Xdirection = 0;
 
 
@@ -111,17 +116,17 @@ if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
 
 	if (angle < 80)
 	{
-		angle += 1.5;
+		angle += 2;
 	}
 
 	if (Xdirection < 6){
 		if (Xdirection >= 0){
-			Xdirection += 0.2;
-			Ydirection += 0.2;
+			Xdirection += 0.18;
+			Ydirection += 0.18;
 		}
 		else {
-			Xdirection += 0.2;
-			Ydirection -= 0.2;
+			Xdirection += 0.18;
+			Ydirection -= 0.18;
 		}
 	}
 }
@@ -129,17 +134,17 @@ if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
 if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
 {
 	if (angle > -80){
-		angle -= 1.5;
+		angle -= 2.0;
 	}
 
 	if (Xdirection > -6){
 		if (Xdirection <= 0){
-			Xdirection -= 0.2;
-			Ydirection += 0.2;
+			Xdirection -= 0.18;
+			Ydirection += 0.18;
 		}
 		else {
-			Xdirection -= 0.2;
-			Ydirection -= 0.2;
+			Xdirection -= 0.18;
+			Ydirection -= 0.18;
 		}
 	}
 }
@@ -147,9 +152,10 @@ if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
 
 
 
-if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN)
+if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN && App->particles->nextSphere == true)
 {
-	App->particles->AddParticle(App->particles->blueBubble, App->particles->blueBubble.ParticlePosition.x, App->particles->blueBubble.ParticlePosition.y, COLLIDER_PLAYER);
+	int random = rand() % 6;
+	App->particles->AddParticle(App->particles->sphere[random], 156, 194, COLLIDER_PLAYER_SHOT);
 }
 
 if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE
