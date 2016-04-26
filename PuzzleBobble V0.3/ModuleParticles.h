@@ -8,9 +8,9 @@
 #include "ModuleCollision.h"
 
 #define MAX_ACTIVE_PARTICLES 100
-#define NUMBER_BUBBLES 5
+#define NUMBER_BUBBLES 9
 
-enum Colour { BLUE, RED, YELLOW, GREEN, ORANGE, PURPLE, BLACK, WHITE };
+enum Colour { EMPTY, BLUE, RED, YELLOW, GREEN, ORANGE, PURPLE, BLACK, WHITE };
 
 struct SDL_Texture;
 
@@ -54,12 +54,6 @@ private:
 
 public:
 
-	/*Particle blueBubble;
-	Particle redBubble;
-	Particle yellowBubble;
-	Particle greenBubble;
-	Particle purpleBubble;
-	Particle orangeBubble;*/
 
 	Particle sphere[NUMBER_BUBBLES];
 
