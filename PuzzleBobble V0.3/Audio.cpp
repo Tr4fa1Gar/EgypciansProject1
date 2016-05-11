@@ -5,9 +5,6 @@
 
 
 
-
-
-
 ModuleAudio::ModuleAudio(){ };
 ModuleAudio::~ModuleAudio(){ };
 
@@ -30,10 +27,16 @@ bool ModuleAudio::Start()
 }
 
 void ModuleAudio::Load(const char* path){
-	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
+ 	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
 	LOG("Initing %s", path);
 	music = Mix_LoadMUS(path);
 	Mix_PlayMusic(music, -1);
+}
+void ModuleAudio::Load2(const char* path){
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 1024);
+	LOG("Initing %s", path);
+	music = Mix_LoadMUS(path);
+	Mix_PlayMusic(music, 0);
 }
 void ModuleAudio::Loadfx(const char* path){
 

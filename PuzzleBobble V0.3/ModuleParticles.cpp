@@ -6,10 +6,11 @@
 #include "ModuleParticles.h"
 #include "ModulePlayer.h"
 #include "ModuleCollision.h"
+#include "Audio.h"
 
 
 
-#define BUBBLESPEED 4.f
+#define BUBBLESPEED 9.f
 #include "SDL/include/SDL_timer.h"
 
 ModuleParticles::ModuleParticles()
@@ -27,10 +28,16 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	bubbles = App->textures->Load("puzzlebobble2/balls.png");
 	// Bubble particle blue
-
+	sphere[BLUE].anim.PushBack({ 27, 37, 16, 16 });
 	sphere[BLUE].anim.PushBack({ 47, 37, 16, 16 });
 	sphere[BLUE].anim.PushBack({ 67, 37, 16, 16 });
 	sphere[BLUE].anim.PushBack({ 87, 37, 16, 16 });
+	sphere[BLUE].anim.PushBack({ 107, 37, 16, 16 });
+	sphere[BLUE].anim.PushBack({ 128, 37, 16, 16 });
+	sphere[BLUE].anim.PushBack({ 148, 37, 16, 16 });
+	sphere[BLUE].anim.PushBack({ 168, 37, 16, 16 });
+	sphere[BLUE].anim.PushBack({ 188, 37, 16, 16 });
+	sphere[BLUE].anim.PushBack({ 208, 37, 16, 16 });
 
 	sphere[BLUE].anim.loop = false;
 	sphere[BLUE].anim.speed = 0.5f;
@@ -124,7 +131,8 @@ bool ModuleParticles::Start()
 	sphere[PURPLE].life = 2000;
 	sphere[PURPLE].ParticlePosition.x = 155;
 	sphere[PURPLE].ParticlePosition.y = 195;
-	//////////////////orange/////////////////////////////////
+
+
 	sphere[ORANGE].anim.PushBack({ 26, 171, 16, 16 });
 	sphere[ORANGE].anim.PushBack({ 46, 171, 16, 16 });
 	sphere[ORANGE].anim.PushBack({ 106, 171, 16, 16 });
@@ -134,8 +142,8 @@ bool ModuleParticles::Start()
 	sphere[ORANGE].anim.PushBack({ 187, 171, 16, 16 });
 	sphere[ORANGE].anim.PushBack({ 207, 171, 16, 16 });
 	//start to pop
-	/*sphere[4].anim.PushBack({ 227, 170, 19, 20 });
-	sphere[4].anim.PushBack({ 252, 169, 23, 23 });
+	/*sphere[ORANGE].anim.PushBack({ 227, 170, 19, 20 });
+	sphere[ORANGE].anim.PushBack({ 252, 169, 23, 23 });
 	*/
 	sphere[ORANGE].anim.loop = false;
 	sphere[ORANGE].anim.speed = 0.5f;
@@ -143,7 +151,9 @@ bool ModuleParticles::Start()
 	sphere[ORANGE].life = 2000;
 	sphere[ORANGE].ParticlePosition.x = 155;
 	sphere[ORANGE].ParticlePosition.y = 195;
-	///////////////////////BLACK///////////////////////////
+	
+	
+	//////////////////BLACK///////////////////////////
 	sphere[BLACK].anim.PushBack({ 26, 198, 16, 16 });
 	sphere[BLACK].anim.PushBack({ 46, 198, 16, 16 });
 	sphere[BLACK].anim.PushBack({ 106, 198, 16, 16 });
@@ -162,7 +172,9 @@ bool ModuleParticles::Start()
 	sphere[BLACK].life = 2000;
 	sphere[BLACK].ParticlePosition.x = 155;
 	sphere[BLACK].ParticlePosition.y = 195;
-	//////////////////////////WHITE/////////////////
+	
+	
+	////////////////////////WHITE/////////////////
 	sphere[WHITE].anim.PushBack({ 46, 225, 16, 16 });
 	sphere[WHITE].anim.PushBack({ 106, 225, 16, 16 });
 	sphere[WHITE].anim.PushBack({ 127, 225, 16, 16 });
@@ -225,13 +237,14 @@ update_status ModuleParticles::Update()
 				p->fx_played = true;
 
 			}
+			
 		}
 	}
 
 	return UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE type, Uint32 delay)
+void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE type, int speed,Uint32 delay)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -241,13 +254,34 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, COLLID
 			p->born = SDL_GetTicks() + delay;
 			p->ParticlePosition.x = x;
 			p->ParticlePosition.y = y;
-			p->speed.y = App->player->Ydirection;
-			p->speed.x = App->player->Xdirection;
+			if (speed != 0){
+				p->speed.y = App->player->Ydirection;
+				p->speed.x = App->player->Xdirection;
+			}
 			/*if (type != COLLIDER_NONE)
 				p->collider = App->collision->AddCollider({ p->ParticlePosition.x, p->ParticlePosition.y, 16, 16 }, type, this);*/
 			active[i] = p;
 			break;
+	
+		
 		}
+
+		/*
+		if (active[i] == nullptr)
+		{
+			Particle* p = new Particle(particle);
+			p->born = SDL_GetTicks() + delay;
+			p->ParticlePosition.x = x;
+			p->ParticlePosition.y = y;
+			if (type != COLLIDER_NONE)
+				p->collider = App->collision->AddCollider({ p->ParticlePosition.x, p->ParticlePosition.y, 14, 14 }, type, this);
+			active[i] = p;
+
+			p->speed.x = -cos(((float)App->player->angle) * M_PI / 180.f) * BUBBLESPEED;;
+			p->speed.y = -sin(((float)App->player->angle) * M_PI / 180.f) * BUBBLESPEED;;
+
+			break;
+		}*/
 	}
 
 }
@@ -273,11 +307,30 @@ bool Particle::Update()
 
 	ParticlePosition.x += speed.x*0.5;
 	ParticlePosition.y += speed.y*0.5;
+	//if (collider != nullptr)
+	//collider->SetPos(ParticlePosition.x / 2, ParticlePosition.y / 2);
 
 	return ret;
 }
+
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2) {
 	LOG("\nparticle col\n");
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	{
+		if (active[i] != nullptr && active[i]->collider == c1)
+		{
+			if (c1->type == COLLIDER_PLAYER_SHOT && c2->type == COLLIDER_WALL){
+				active[i]->speed.x *= -1;
+
+				//sfx 03 is played when a bubble collides with a wall
+
+			}
+		}
+	}
+			
+}
+//void ModuleParticles::OnCollision(Collider* c1, Collider* c2) {
+	//LOG("\nparticle col\n");
 	/*for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
 	{
 		if (active[i] != nullptr && active[i]->collider == c1)
@@ -318,7 +371,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2) {
 			}
 		}
 	}*/
-}
+
 /*void Sphere::CheckBobble(){
 
 	int i;

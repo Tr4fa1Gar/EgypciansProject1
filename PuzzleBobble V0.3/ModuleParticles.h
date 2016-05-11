@@ -7,10 +7,10 @@
 #include "p2Point.h"
 #include "ModuleCollision.h"
 
-#define MAX_ACTIVE_PARTICLES 100
-#define NUMBER_BUBBLES 9
+#define MAX_ACTIVE_PARTICLES 2000
+#define NUMBER_BUBBLES 8
 
-enum Colour { EMPTY, BLUE, RED, YELLOW, GREEN, ORANGE, PURPLE, BLACK, WHITE };
+enum Colour { BLUE, RED, YELLOW, GREEN, ORANGE, PURPLE, BLACK, WHITE };
 
 struct SDL_Texture;
 
@@ -29,7 +29,7 @@ struct Particle
 	Particle(const Particle& p);
 	bool Update();
 	Colour bubble_colour;
-	//Vector <Sphere*> allahu_list;
+	
 };
 
 class ModuleParticles : public Module
@@ -42,7 +42,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE type, Uint32 delay = 0);
+	void AddParticle(const Particle& particle, int x, int y, COLLIDER_TYPE type, int speed, Uint32 delay = 0 );
 	void OnCollision(Collider*, Collider*);
 	bool nextSphere = true;
 
@@ -54,6 +54,12 @@ private:
 
 public:
 
+	/*Particle blueBubble;
+	Particle redBubble;
+	Particle yellowBubble;
+	Particle greenBubble;
+	Particle purpleBubble;
+	Particle orangeBubble;*/
 
 	Particle sphere[NUMBER_BUBBLES];
 

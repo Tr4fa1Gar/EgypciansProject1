@@ -22,12 +22,15 @@ public:
 public:
 
 	SDL_Rect background;
-	
+	SDL_Rect rletters;
 
+	Animation drake;
+	Animation* current_animation1 =  nullptr;
 
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* letters = nullptr;
 
-
+	iPoint drakes;
 };
 
 #endif // __MODULESCENEMODE_H__

@@ -10,8 +10,6 @@
 #include "ModuleFadeToBlack.h"
 #include "Audio.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
-
 ModuleSceneGameOver::ModuleSceneGameOver()
 {
 	// Background
@@ -34,7 +32,14 @@ bool ModuleSceneGameOver::Start()
 	graphics = App->textures->Load("puzzlebobble2/gameover.png");
 
 	App->audio->Enable();
-	App->audio->Load("puzzlebobble2/gameover.wav");
+
+	
+	
+
+	 App->audio->Load2("puzzlebobble2/gameover.ogg");
+		
+
+	
 
 	return true;
 }

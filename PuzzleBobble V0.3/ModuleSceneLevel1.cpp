@@ -11,7 +11,7 @@
 #include "ModuleSceneLevel1.h"
 #include "Audio.h"
 
-// Reference at https://www.youtube.com/watch?v=OEhmUuehGOA
+
 
 ModuleSceneLevel1::ModuleSceneLevel1()
 {
@@ -44,16 +44,64 @@ bool ModuleSceneLevel1::Start()
 	App->particles->Enable();
 	App->audio->Enable();
 	App->collision->Enable();
-
-	// BOARD COLLIDER
+	//grid
+	
+	
+	// BOARD COLLIDER				
 	App->collision->AddCollider({0,25,17,215}, COLLIDER_WALL);
 	App->collision->AddCollider({304,25,16,215}, COLLIDER_WALL);
 	App->collision->AddCollider({0,25,350,8}, COLLIDER_ROOF);
 	
 	// PLAYER COLLIDER
-	App->collision->AddCollider({ 155, 195, 15, 15 }, COLLIDER_PLAYER);
+	App->collision->AddCollider({ 155, 195, 15, 15 }, COLLIDER_PLAYER_SHOT);
+	
+	// LINE COLLIDER
+	App->collision->AddCollider({ 17, 183, 287, 5 }, COLLIDER_LINE);
 
-	App->audio->Load("puzzlebobble2/level1.wav");
+	int bubble_board[4][18] = {
+
+
+		{ BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE },
+		{ BLUE, BLUE, RED, RED, RED, GREEN, GREEN, GREEN, GREEN, BLUE, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, GREEN, BLUE },
+		{ BLUE, RED, RED, RED, YELLOW, YELLOW, GREEN, GREEN, BLUE, BLUE, BLUE, YELLOW, YELLOW, YELLOW, GREEN, GREEN, BLUE, BLUE },
+		{ BLUE, RED, RED, YELLOW, YELLOW, YELLOW, GREEN, BLUE, BLUE, BLUE, BLUE, BLUE, YELLOW, GREEN, GREEN, GREEN, BLUE },
+		
+	};
+	int line = 18;
+	for (int i = 0; i < 18; i++){
+		for (int j = 0; j < 4; j++){
+			line = 18;
+			if (j % 2 != 0)
+				line = 18 + 8;
+			if (bubble_board[j][i] == RED){
+				App->particles->AddParticle(App->particles->sphere[RED], line + (i * 16), 35 + (j * 14), COLLIDER_PLAYER_SHOT, 0);
+				//App->collision->AddCollider({ 17, 33, 16, 16 }, COLLIDER_PLAYER);
+			}
+			if (bubble_board[j][i] == YELLOW){
+				App->particles->AddParticle(App->particles->sphere[YELLOW], line + (i * 16), 35 + (j * 14), COLLIDER_PLAYER_SHOT, 0);
+				//App->collision->AddCollider({ 17+16, 33, 16, 16 }, COLLIDER_PLAYER);
+			}
+			if (bubble_board[j][i] == GREEN){
+				App->particles->AddParticle(App->particles->sphere[GREEN], line + (i * 16), 35 + (j * 14), COLLIDER_PLAYER_SHOT, 0);
+				//App->collision->AddCollider({ 17+32, 33, 16, 16 }, COLLIDER_PLAYER);
+			}
+			if (bubble_board[j][i] == BLUE){
+				App->particles->AddParticle(App->particles->sphere[BLUE], line + (i * 16), 35 + (j * 14), COLLIDER_PLAYER_SHOT, 0);
+				//App->collision->AddCollider({ 17+48, 33, 16, 16 }, COLLIDER_PLAYER);
+			}
+		}
+	}
+	for (int i = 0; i < 18; i++){
+		for (int j = 0; j < 4; j++){
+			line = 18;
+			if (j % 2 != 0)
+				line = 18 + 8;
+			if (BLUE < bubble_board[j][i] > WHITE){
+				App->collision->AddCollider({ line + (i * 16), 35 + (j * 14), 14, 14 }, COLLIDER_ENEMY);
+			}
+		}
+	}
+	App->audio->Load("puzzlebobble2/background.ogg");
 	int i = 0;
 	switch (i){
 

@@ -12,7 +12,7 @@
 #include "ModuleSceneGameOver.h"
 #include "ModuleSceneMode.h"
 #include "ModuleParticles.h"
-
+#include "ModuleGrid.h"
 
 Application::Application()
 {
@@ -28,9 +28,9 @@ Application::Application()
 	modules[i++] = scene_credit = new ModuleSceneCredits();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = collision = new ModuleCollision();
-	modules[i++] = fade = new ModuleFadeToBlack();
 	modules[i++] = particles = new ModuleParticles();
-	
+	//modules[i++] = grid = new ModuleGrid();
+	modules[i++] = fade = new ModuleFadeToBlack();
 
 }	
 

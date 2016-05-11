@@ -19,6 +19,7 @@ class ModuleSceneMode;
 class Module;
 class ModuleParticles;
 class ModuleCollision;
+//class ModuleGrid;
 
 
 
@@ -40,6 +41,7 @@ public:
 	ModuleAudio* audio;
 	ModuleFadeToBlack* fade;
 	ModuleParticles* particles;
+	//ModuleGrid* grid;
 	
 
 

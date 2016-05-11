@@ -114,6 +114,8 @@ current_animationMachine = &idleMachine;
 if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
 {
 
+	
+
 	if (angle < 80)
 	{
 		angle += 2;
@@ -133,6 +135,9 @@ if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
 
 if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
 {
+
+	
+
 	if (angle > -80){
 		angle -= 2.0;
 	}
@@ -151,11 +156,10 @@ if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
 
 
 
-
 if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN && App->particles->nextSphere == true)
 {
-	int random = rand() % 6;
-	App->particles->AddParticle(App->particles->sphere[random], 156, 194, COLLIDER_PLAYER_SHOT);
+	int random = rand() % 8;
+	App->particles->AddParticle(App->particles->sphere[random], 155, 199, COLLIDER_PLAYER_SHOT,2);
 }
 
 if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE

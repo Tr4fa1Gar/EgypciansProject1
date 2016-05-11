@@ -16,6 +16,7 @@ public:
 	Mix_Music *music;
 	Mix_Chunk*fx;
 	void Load(const char* path);
+	void Load2(const char* path);
 	void Loadfx(const char* path);
 
 };

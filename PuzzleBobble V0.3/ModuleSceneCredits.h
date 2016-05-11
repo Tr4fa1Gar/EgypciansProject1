@@ -18,9 +18,11 @@ public:
 	bool CleanUp();
 
 public:
-	
+
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* credgraphics = nullptr;
 	SDL_Rect titlescreen;
+	SDL_Rect creditscreen;
 	
 };
 
