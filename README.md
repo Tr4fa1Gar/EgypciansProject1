@@ -3,7 +3,7 @@
  Puzzle Bobble Project
 
 
- 2016 v0.3
+ 2016 v1.0(Alpha)
 
 EGYPCIANS:
 We are a group formed by 4 UPC students 
@@ -11,41 +11,50 @@ We are a group formed by 4 UPC students
 - Eric Abad 
 - Guillem Arman
 - Pau Bordes
-- Guillem DomÃ­nguez
+- Guillem Domínguez
 
-that are recreating the game called Puzzle Bobble 2 (Bust-a-Move 2) from Taito.
-The objective of the game is to pop all the bubbles making groups of 3 or more bubbles of the same color.
+that are recreating the game called Puzzle Bobble 2 (Bust-a-Move Again) from Taito.
 
-There is a link to a video of a full gameplay: https://www.youtube.com/watch?v=_MMq7yrV6fI
+Here you can see a longplay of the game --> https://www.youtube.com/watch?v=_MMq7yrV6fI
 
-The game has (for now) 4 stages that have each of them special controls: 
+The objective of this arcade game is to clear every bubble of each level, to finish all the rounds.
+In order to pop bubbles the player needs to connect 3 or more bubbles of each color.
+If the player isn't able to clear the level before a bubble reaches the lower line the game is over.
+The player also loses if he cannot do it in time (60 seconds).
+
+Our game has a WELCOME SCREEN, a MODE SELECTION MENU, LEVELS 1-2-3, a CONGRATULATIONS SCREEN and a GAME OVER SCREEN. 
+Each of the screens have controls:
 
 
 WELCOME SCREEN:
 
-* C - Put coin/credit
-* Space bar - next screen
+C - Put coin/credit
+Space bar - next screen
 
-MODE MENU:
+SELECTION MODE MENU:
 
-* S - select game mode
-* Space bar - next screen
+S - select game mode
+Space bar - next screen
 
 
 LEVEL 1:
 
-* Left/Right - Aim the arrow
-* S - Shoot bubbles
-* Q - go to the WELCOME SCREEN
-* Space bar - next screen
+Left/Right - Aim the arrow
+S - Shoot bubbles
+Q - go to the WELCOME SCREEN
+Space bar - next screen
+
+LEVEL 2:
+
+LEVEL 3:
+
+CONGRATULATIONS SCREEN:
 
 GAME OVER:
 
-* Space bar - go to the WELCOME SCREEN
+Space bar - go to the WELCOME SCREEN
 
 
-In each of the stages, we have implemented the music and fx sound.
-In this version there is still no win/lose condition as we weren't able to make the bubbles pop.
-There is a grid of bubbles of different colors.
+##Changelist
 
  
