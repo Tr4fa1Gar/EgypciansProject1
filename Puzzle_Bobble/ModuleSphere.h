@@ -23,7 +23,7 @@ struct Sphere
 	Animation idle;
 	Animation monster;
 	uint fx = 0;
-	iPoint position;
+	iPoint particlePosition;
 	iPoint pos_board;
 	fPoint speed;
 	Uint32 born = 0;
@@ -36,10 +36,10 @@ struct Sphere
 	Sphere();
 	Sphere(const Sphere& p);
 	bool Update();
-	void CheckBobbleLeft();
-	void CheckBobbleRight();
-	void CheckBobbleDownLeft();
-	void CheckBobbleDownRight();
+	void CheckBobble();
+	
+	void CheckBobbleDown();
+	
 
 	int board_index;
 };
@@ -78,10 +78,10 @@ class ModuleSphere : public Module
 {
 public:
 	
-	uint last_sphere_left = 0;
-	bool next_sphere_right = true;
-	bool next_sphere_left = true;
-	bool check_down = false;
+	uint lastSphere = 0;
+	
+	bool nextSphere = true;
+	bool checkDown = false;
 	Vector <Sphere*> bubbleList;
 	
 	Vector <Sphere*> bobble_down;
@@ -100,8 +100,8 @@ public:
 
 
 	SDL_Texture* graphics = nullptr;
-	//Sphere* active_right[MAX_ACTIVE_SPHERES];
-	Sphere* active_left[MAX_ACTIVE_SPHERES];
+
+	Sphere* active[MAX_ACTIVE_SPHERES];
 	
 	
 

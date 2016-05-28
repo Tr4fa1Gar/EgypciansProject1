@@ -21,8 +21,9 @@ public:
 	void CreateMap(int number[]);
 	bool CleanUp();
 	bool CheckWin();
+	void RoofDown(int &counter);
 	
-
+	int counter = 0;
 public:
 	Vector<iPoint*> board;
 

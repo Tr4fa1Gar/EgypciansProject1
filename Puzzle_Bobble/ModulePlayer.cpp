@@ -79,10 +79,10 @@ ModulePlayer::ModulePlayer()
 
 
 	//Top base
-	top_base = { 27, 820, 34, 16 };
+	//top_base = { 27, 820, 34, 16 };
 
 	//Blow tube
-	blow = { 37, 869, 13, 11 };
+	//blow = { 37, 869, 13, 11 };
 
 	//hurry up
 	hurry_up.PushBack({ 3, 10, 42, 29 });
@@ -176,6 +176,8 @@ ModulePlayer::~ModulePlayer()
 // Load assets
 bool ModulePlayer::Start()
 {
+	LoseCondition = false;
+	
 	LOG("Loading player");
 	mystate = FIRST;
 	arrowGraphics = App->textures->Load("Game/Puzzlebobble2/arrows.png");
@@ -184,8 +186,11 @@ bool ModulePlayer::Start()
 	shoot = App->audio->Load_effects("Game/PuzzleBobble2/twinkfx.wav");
 	ballgraphics = App->textures->Load("Game/sprites.png");
 	
-
+	bobble_down = 5;
+	bobble_counter = 0;
+	hurry_up.Reset();
 	lastTime = SDL_GetTicks();
+	currentTime = lastTime;
 
 	return true;
 }
@@ -199,15 +204,15 @@ bool ModulePlayer::CleanUp()
 	App->textures->Unload(arrowGraphics);
 	App->textures->Unload(spritesGraphics);
 	
-	
+	App->spheres->nextSphere = true;
 	return true;
 }
 
 bool ModulePlayer::CheckLose(){
-	for (unsigned int i = App->spheres->last_sphere_left; i > 0; i--){
-		if (App->spheres->active_left[i] == nullptr)
+	for (unsigned int i = App->spheres->lastSphere; i > 0; i--){
+		if (App->spheres->active[i] == nullptr)
 			continue;
-		if (App->spheres->active_left[i]->position.y > 170 * SCREEN_SIZE && App->spheres->active_left[i]->speed.y == 0)
+		if (App->spheres->active[i]->particlePosition.y > 170 * SCREEN_SIZE && App->spheres->active[i]->speed.y == 0)
 		{
 			return true;
 		}
@@ -249,43 +254,34 @@ update_status ModulePlayer::Update()
 		if (angle>-70.0)
 			angle -= 2.0;
 
-
-
-
-
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
 	{
 
-
-
 		if (angle<70.0)
 			angle += 2.0;
 
-
 	}
-
-
 
 	currentTime = SDL_GetTicks();
 
-
-	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere_left == true || currentTime - lastTime > 8000)
+	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN && App->spheres->nextSphere == true || currentTime - lastTime > 8000)
 	{
 
-		App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.x = (sin(angle*PI / 180)) * SPEED;
-		App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.y = -(cos(angle*PI / 180)) * SPEED;
+		App->spheres->active[App->spheres->lastSphere - 1]->speed.x = (sin(angle*PI / 180)) * SPEED;
+		App->spheres->active[App->spheres->lastSphere - 1]->speed.y = -(cos(angle*PI / 180)) * SPEED;
 
 		
 		App->audio->PlayEffects(shoot);
-		App->spheres->next_sphere_left = false;
+		App->spheres->nextSphere = false;
 		lastTime = currentTime;
 		hurry_up.Reset();
+		bobble_counter++;
 		
 	}
 
-	if (currentTime - lastTime > 600000)
+	if (currentTime - lastTime > 10000)
 	{
 
 		current_animationHurryup = &hurry_up;
@@ -310,10 +306,7 @@ update_status ModulePlayer::Update()
 	App->render->Blit(arrowGraphics, position_wood.x, position_wood.y, &wood);
 	App->render->Blit(ballgraphics, position.x - 63 * SCREEN_SIZE, position.y - 2 * SCREEN_SIZE, &prev_bobble[Random]); // bobble next
 	
-	// Draw UI (score) --------------------------------------
-	
 
-	// Draw text --------------------------------------------
 
 	return update_status::UPDATE_CONTINUE;
 }
@@ -326,11 +319,11 @@ update_status ModulePlayer::PostUpdate(){
 	if (mystate == FIRST){
 		while (succes != true){
 			Random = rand() % 8;
-			for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++){
-				if (App->spheres->active_left[i] == nullptr){
+			for (unsigned int i = 0; i < App->spheres->lastSphere; i++){
+				if (App->spheres->active[i] == nullptr){
 					continue;
 				}
-				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active_left[i]->sphere_color){
+				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active[i]->sphere_color){
 					succes = true;
 				}
 			}
@@ -342,11 +335,11 @@ update_status ModulePlayer::PostUpdate(){
 	if (mystate == UPDATE){
 		while (succes != true){
 			Random = rand() % 8;
-			for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++){
-				if (App->spheres->active_left[i] == nullptr){
+			for (unsigned int i = 0; i < App->spheres->lastSphere; i++){
+				if (App->spheres->active[i] == nullptr){
 					continue;
 				}
-				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active_left[i]->sphere_color){
+				else if (App->spheres->spheres[Random].sphere_color == App->spheres->active[i]->sphere_color){
 					succes = true;
 				}
 			}

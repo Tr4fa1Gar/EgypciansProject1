@@ -54,7 +54,7 @@ bool ModuleLevel_1::Start()
 
 	App->collision->AddCollider(SDL_Rect{ 0, 25, 16, 215 }, COLLIDER_LATERAL_WALL);	//Left 
 	App->collision->AddCollider(SDL_Rect{ 304, 25, 16, 215 }, COLLIDER_LATERAL_WALL);		//Right
-	App->collision->AddCollider(SDL_Rect{ 0, 25, 350, 8 }, COLLIDER_WALL);				//Top
+	top = App->collision->AddCollider(SDL_Rect{ 0, 25, 350, 8 }, COLLIDER_WALL);		//Top
 	
 	int map[NUM_SQUARES];
 
@@ -62,6 +62,7 @@ bool ModuleLevel_1::Start()
 	 BLUE, BLUE, RED, RED, RED, GREEN, GREEN, GREEN, GREEN, BLUE, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, GREEN, BLUE ,
 	 BLUE, RED, RED, RED, YELLOW, YELLOW, GREEN, GREEN, BLUE, BLUE, BLUE, YELLOW, YELLOW, YELLOW, GREEN, GREEN, BLUE, BLUE, 
 	 BLUE, RED, RED, YELLOW, YELLOW, YELLOW, GREEN, BLUE, BLUE, BLUE, BLUE, BLUE, YELLOW, GREEN, GREEN, GREEN, BLUE };
+	
 	 
 	int maxballs = sizeof(ballmaps) / sizeof(ballmaps[0]);
 	for (int i = 0; i < NUM_SQUARES; i++){
@@ -70,10 +71,6 @@ bool ModuleLevel_1::Start()
 		}
 		else map[i] = 9;
 	}
-
-
-	/*timeout = SDL_GetTicks() + 60000;
-	congrats = SDL_GetTicks() + 2000;*/
 
 	
 	
@@ -101,6 +98,10 @@ update_status ModuleLevel_1::Update()
 		App->player->LoseCondition = false;
 		App->fade->FadeToBlack(App->level_1, App->game_over, 1);
 	}
+	if (App->player->bobble_counter == App->player->bobble_down)
+	{
+		top->SetPos(0, 25 + (15 * App->player->timesDown));
+	}
 
 	
 
@@ -118,25 +119,24 @@ bool ModuleLevel_1::CleanUp()
 	App->fonts->UnLoad(Font_level1);
 	App->player->Disable();
 	App->collision->Disable();
-	
-
+	App->collision->EraseCollider(top);
 	
 
 	Mix_HaltMusic();
 
 		
-	for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++)
+	for (unsigned int i = 0; i < App->spheres->lastSphere; i++)
 	{
-		if (App->spheres->active_left[i] == nullptr)
+		if (App->spheres->active[i] == nullptr)
 			continue;
 
-		App->collision->EraseCollider(App->spheres->active_left[i]->collider);
+		App->collision->EraseCollider(App->spheres->active[i]->collider);
 
-		App->spheres->active_left[i]->collider = nullptr;
-		App->spheres->active_left[i] = nullptr;
+		App->spheres->active[i]->collider = nullptr;
+		App->spheres->active[i] = nullptr;
 	}
 
-	App->spheres->last_sphere_left = 0;
+	App->spheres->lastSphere = 0;
 	App->level_1->Disable();
 
 	return true;

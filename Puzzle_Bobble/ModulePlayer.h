@@ -68,8 +68,8 @@ public:
 	iPoint position;
 	Mix_Chunk* shoot = nullptr;
 
-	SDL_Rect top_base;
-	SDL_Rect blow;
+/*	SDL_Rect top_base;
+	SDL_Rect blow;*/
 	SDL_Rect prev_bobble[8];
 	float orientationx, orientationy;
 	int Random;
@@ -78,6 +78,9 @@ public:
 
 	States mystate;
 
+	int bobble_down, bobble_counter;
+
+	int timesDown = 1;
 	
 };
 

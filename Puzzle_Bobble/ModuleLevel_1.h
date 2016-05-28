@@ -6,6 +6,7 @@
 #include "ModuleAudio.h"
 
 struct SDL_Texture;
+struct Collider;
 
 class ModuleLevel_1 : public Module
 {
@@ -25,6 +26,8 @@ public:
 	
 	SDL_Rect level1;
 	SDL_Rect board;
+
+	Collider* top;
 
 	int Font_level1 = -1;
 	

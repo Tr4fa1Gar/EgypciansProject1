@@ -1,6 +1,9 @@
 #include"ModuleBoard.h"
+#include <time.h>
 
-ModuleBoard::ModuleBoard()//parametritzar-- 
+#include <stdlib.h>
+
+ModuleBoard::ModuleBoard()
 {
 	int x, y;
 	int i = 0;
@@ -40,15 +43,18 @@ bool ModuleBoard::Start(){ return true; };
 
 bool ModuleBoard::CleanUp()
 {
+	
 	int i;
-	for (i = 0; i < NUM_SQUARES; i++)
+
+	for (i = 0; i < board.size(); i++)
 	{
-		if (board[i]->Empty == false)
-		{
-			board[i]->Empty = true;
-			
+		if (board[i] != nullptr){
+			delete board[i];
+			board[i] = nullptr;
+
 		}
 	}
+	board.clear();
 	return true;
 }
 
@@ -64,15 +70,15 @@ void ModuleBoard::CheckPosition(Sphere* actual_sphere)
 	{
 		if (board[i]->Empty == true)
 		{
-			if (board[i]->DistanceTo(actual_sphere->position) < min_distance)
+			if (board[i]->DistanceTo(actual_sphere->particlePosition) < min_distance)
 			{
-				min_distance = board[i]->DistanceTo(actual_sphere->position);
+				min_distance = board[i]->DistanceTo(actual_sphere->particlePosition);
 				square_index = i;
 			}
 		}
 	}
-	actual_sphere->position.x = board[square_index]->x;
-	actual_sphere->position.y = board[square_index]->y;
+	actual_sphere->particlePosition.x = board[square_index]->x;
+	actual_sphere->particlePosition.y = board[square_index]->y;
 	actual_sphere->pos_board.x = board[square_index]->x;
 	actual_sphere->pos_board.y = board[square_index]->y;
 	board[square_index]->Empty = false;
@@ -104,4 +110,34 @@ bool ModuleBoard::CheckWin()
 
 	return true;
 }
+void ModuleBoard::RoofDown(int &counter){
 
+	srand(time(NULL));
+	int random = 0;
+	int i;
+	int x, y;
+	y = 42 * SCREEN_SIZE - 16;
+	for (i = 0; i < board.size(); i++){
+		board[i]->y += 14 * SCREEN_SIZE;
+	}
+
+	for (i = 0; i < App->spheres->lastSphere; i++){
+		if (App->spheres->active[i] != nullptr){
+			App->spheres->active[i]->particlePosition.y += 14 * SCREEN_SIZE;
+		}
+	}
+
+	counter++;
+	for (i = 0; i < board.size(); i++){
+
+		if (board[i]->Empty == false){
+			for (int j = 0; j < App->spheres->lastSphere; j++){
+				if (App->spheres->active[j] != nullptr&& App->spheres->active[j]->particlePosition.x == board[i]->x&& App->spheres->active[j]->particlePosition.y == board[i]->y){
+					App->spheres->active[j]->board_index = i;
+				}
+			}
+		}
+	}
+
+
+}
