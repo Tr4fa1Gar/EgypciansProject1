@@ -50,9 +50,6 @@
     <ClInclude Include="ModuleLevel_1.h">
       <Filter>Levels</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleCongrats.h">
-      <Filter>Levels</Filter>
-    </ClInclude>
     <ClInclude Include="ModulePlayer.h">
       <Filter>Modules</Filter>
     </ClInclude>
@@ -76,6 +73,15 @@
     </ClInclude>
     <ClInclude Include="ModuleGameOver.h">
       <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleLevel_2.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleSelect.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFonts.h">
+      <Filter>Modules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -112,9 +118,6 @@
     <ClCompile Include="ModuleLevel_1.cpp">
       <Filter>Levels</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleCongrats.cpp">
-      <Filter>Levels</Filter>
-    </ClCompile>
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
@@ -129,6 +132,15 @@
     </ClCompile>
     <ClCompile Include="ModuleGameOver.cpp">
       <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleLevel_2.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSelect.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFonts.cpp">
+      <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
