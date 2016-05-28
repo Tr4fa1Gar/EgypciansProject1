@@ -1,34 +1,77 @@
-﻿Build started 18/05/2016 13:19:34.
-     1>Project "C:\Users\ericap\Desktop\PuzzleBobble2-AdvancedVersion\Puzzle_Bobble\SDL Game.vcxproj" on node 2 (Build target(s)).
+﻿Build started 28/05/2016 13:12:11.
+     1>Project "C:\Users\Bordes\Documents\GitHub\EgypciansProject1\Puzzle_Bobble\SDL Game.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ModuleBoard.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Application.cpp Globals.cpp ModuleBoard.cpp ModuleCollision.cpp ModuleCongrats.cpp ModuleGameOver.cpp ModuleLevel_1.cpp Main.cpp ModuleAudio.cpp ModuleFadeToBlack.cpp ModuleInput.cpp ModulePlayer.cpp ModuleRender.cpp ModuleSphere.cpp ModuleStartScreen.cpp ModuleTextures.cpp ModuleWindow.cpp
+         ModuleWindow.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+         ModuleTextures.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+         ModuleStartScreen.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\animation.h(36): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+         ModuleSphere.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\animation.h(36): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\modulesphere.cpp(515): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\modulesphere.cpp(516): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\modulesphere.cpp(578): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\modulesphere.cpp(586): warning C4018: '<' : signed/unsigned mismatch
+         ModuleRender.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+         ModulePlayer.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\animation.h(36): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\moduleplayer.cpp(46): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\moduleplayer.cpp(277): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\moduleplayer.cpp(278): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\moduleplayer.cpp(322): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+         ModuleInput.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+         ModuleFadeToBlack.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+         ModuleAudio.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+         Main.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+         ModuleLevel_1.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\animation.h(36): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+         ModuleGameOver.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\animation.h(36): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+         ModuleCongrats.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\modulecongrats.cpp(40): error C2039: 'congratulations' : is not a member of 'Application'
+                 c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\application.h(30) : see declaration of 'Application'
+         ModuleCollision.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
          ModuleBoard.cpp
-     1>c:\users\ericap\desktop\puzzlebobble2-advancedversion\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\ericap\desktop\puzzlebobble2-advancedversion\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\ericap\desktop\puzzlebobble2-advancedversion\puzzle_bobble\animation.h(36): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\ericap\Desktop\PuzzleBobble2-AdvancedVersion\Puzzle_Bobble\Debug\SDL3 Handout.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\ericap\Desktop\PuzzleBobble2-AdvancedVersion\Puzzle_Bobble\Debug\SDL3 Handout.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\ericap\Desktop\PuzzleBobble2-AdvancedVersion\Puzzle_Bobble\Debug\SDL3 Handout.lib" /MACHINE:X86 Debug\Application.obj
-         Debug\Globals.obj
-         Debug\ModuleBoard.obj
-         Debug\ModuleCollision.obj
-         Debug\ModuleCongrats.obj
-         Debug\ModuleGameOver.obj
-         Debug\ModuleLevel_1.obj
-         Debug\Main.obj
-         Debug\ModuleAudio.obj
-         Debug\ModuleFadeToBlack.obj
-         Debug\ModuleInput.obj
-         Debug\ModulePlayer.obj
-         Debug\ModuleRender.obj
-         Debug\ModuleSphere.obj
-         Debug\ModuleStartScreen.obj
-         Debug\ModuleTextures.obj
-         Debug\ModuleWindow.obj
-         LINK : C:\Users\ericap\Desktop\PuzzleBobble2-AdvancedVersion\Puzzle_Bobble\Debug\SDL3 Handout.exe not found or not built by the last incremental link; performing full link
-     1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
-         SDL Game.vcxproj -> C:\Users\ericap\Desktop\PuzzleBobble2-AdvancedVersion\Puzzle_Bobble\Debug\SDL3 Handout.exe
-     1>Done Building Project "C:\Users\ericap\Desktop\PuzzleBobble2-AdvancedVersion\Puzzle_Bobble\SDL Game.vcxproj" (Build target(s)).
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\animation.h(36): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+         Globals.cpp
+         Application.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\animation.h(36): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+         Generating Code...
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\modulesphere.cpp(408): warning C4715: 'ModuleSphere::Update' : not all control paths return a value
+     1>Done Building Project "C:\Users\Bordes\Documents\GitHub\EgypciansProject1\Puzzle_Bobble\SDL Game.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:01.13
+Time Elapsed 00:00:07.69
