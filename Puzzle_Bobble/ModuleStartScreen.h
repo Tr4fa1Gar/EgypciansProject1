@@ -19,13 +19,18 @@ public:
 	bool CleanUp();
 
 public:
-
+	char credit_score[10];
+	int cred_score = 1;
 	SDL_Texture* graphics = nullptr;
-	SDL_Texture* credgraphics = nullptr;
+	
 	SDL_Rect background;
 	SDL_Rect creditscreen;
 	Mix_Music* level_music = nullptr;
 	Mix_Chunk* coin = nullptr;
+	
+	int Font_credit = -1;
+	
+	
 };
 
 

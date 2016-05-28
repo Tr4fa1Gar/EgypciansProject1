@@ -92,7 +92,7 @@ void ModuleCollision::DebugDraw()
 {
 
 	if (App->input->keyboard[SDL_SCANCODE_F1] == KEY_DOWN)
-		debug =! debug;
+		debug = !debug;
 
 	if (debug == false)
 		return ;
@@ -117,7 +117,7 @@ void ModuleCollision::DebugDraw()
 		case COLLIDER_SPHERE: // red
 			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 			break;
-		case COLLIDER_LOSE: // asuliyo secsy
+		case COLLIDER_LOSE: // 
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
 			break;
 		}

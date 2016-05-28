@@ -36,9 +36,7 @@ bool ModuleSphere::Start()
 	
 	//////////////////////////////////////Collision scenary/////////////////////////////////////////////
 
-	App->collision->AddCollider(SDL_Rect{ 0, 25, 16, 215 }, COLLIDER_LATERAL_WALL);	//Left 
-	App->collision->AddCollider(SDL_Rect{ 304, 25, 16, 215 }, COLLIDER_LATERAL_WALL);		//Right
-	App->collision->AddCollider(SDL_Rect{ 0, 25, 350, 8 }, COLLIDER_WALL);				//Top
+	
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	LOG("Loading particles");
@@ -592,7 +590,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 
 						}
 					}
-					for (int i = App->spheres->last_sphere_left; i > 0; i--){
+					for (int i = App->spheres->last_sphere_left - 1; i >= 0; i--){
 						if (active_left[i] == nullptr || active_left[i]->collider == nullptr)
 							continue;
 						if (App->spheres->active_left[i]->checked == false){

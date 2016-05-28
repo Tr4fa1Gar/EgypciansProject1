@@ -1,7 +1,7 @@
 #ifndef __ModuleCollision_H__
 #define __ModuleCollision_H__
 
-#define MAX_COLLIDERS 200
+#define MAX_COLLIDERS 400
 
 #include "Module.h"
 
@@ -11,6 +11,7 @@ enum COLLIDER_TYPE
 	COLLIDER_WALL,
 	COLLIDER_SPHERE,
 	COLLIDER_LATERAL_WALL,
+	COLLIDER_LEFT_WALL,
 	COLLIDER_LOSE,
 	COLLIDER_MAX
 };

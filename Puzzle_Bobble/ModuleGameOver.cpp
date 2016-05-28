@@ -6,9 +6,12 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
+#include "ModulePlayer.h"
+#include "ModuleCollision.h"
+#include "ModuleSphere.h"
 
 #include "ModuleStartScreen.h"
-#include "ModuleCongrats.h"
+
 #include "ModuleGameOver.h"
 
 
@@ -23,15 +26,16 @@ ModuleGameOver::~ModuleGameOver()
 
 bool ModuleGameOver::Start()
 {
+	App->game_over->Enable();
+	App->player->Disable();
+	App->collision->Disable();
+	App->spheres->Disable();
+
 	graphics = App->textures->Load("Game/PuzzleBobble2/gameover.png");
-	level_music = App->audio->Load_music("Game/PuzzleBobble2/gameover.ogg");
-
+	GO_music = App->audio->Load_music("Game/PuzzleBobble2/gameover.ogg");
+	App->audio->PlayMusic(GO_music);
 	
-
-	if (Mix_PlayMusic(level_music, 1) == -1) {
-		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
-
-	}
+	
 	return true;
 }
 
@@ -41,7 +45,6 @@ update_status ModuleGameOver::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
-
 		App->fade->FadeToBlack(App->game_over, App->menu_screen, 1);
 	}
 	return UPDATE_CONTINUE;
@@ -49,8 +52,10 @@ update_status ModuleGameOver::Update()
 
 bool ModuleGameOver::CleanUp()
 {
-	App->audio->Disable();
-	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
-		SDL_Delay(1000);
+	
+	App->textures->Unload(graphics);
+	Mix_HaltMusic();
+	App->game_over->Disable();
+	
 	return true;
 }

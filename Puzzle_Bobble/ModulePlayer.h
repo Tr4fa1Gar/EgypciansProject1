@@ -8,7 +8,7 @@
 #include "SDL/include/SDL_rect.h"
 
 struct SDL_Texture;
-enum States { FIRST,PREUPDATE, UPDATE,POSTUPDATE };
+enum States { FIRST, PREUPDATE, UPDATE, POSTUPDATE };
 class ModulePlayer : public Module
 {
 public:
@@ -26,25 +26,39 @@ public:
 
 	SDL_Texture* arrowGraphics = nullptr;
 	SDL_Texture* dragonGraphics = nullptr;
-
+	SDL_Texture* spritesGraphics = nullptr;
+	SDL_Texture* ballgraphics = nullptr;
 
 	Animation* current_animationMachine = nullptr;
 	Animation* current_animationDragon = nullptr;
+	Animation* current_animationHurryup = nullptr;
 
 	Animation idleMachine;
 	Animation idleDragon;
+	Animation jumpDragon;
+	Animation hurry_up;
 
 	iPoint positionMachine;
 	iPoint positionDragon;
 	iPoint positionArrow;
+	iPoint positionHurry;
 	/////////////////////////////////////////////////
-	
+
+	SDL_Rect next;
+	SDL_Rect* p_next;
+	iPoint position_next;
+
+	SDL_Rect wood;
+	SDL_Rect* p_wood;
+	iPoint position_wood;
+
 	Animation bobShot;
 	Animation base_left;
 
-	Animation hurry_up;
+
 	Animation hurry_up_dragon;
 	SDL_Rect arrow_src;
+
 	SDL_Rect* p_arrow_src = nullptr;
 	SDL_Rect arrow_dst;
 	SDL_Rect* p_arrow_dst = nullptr;
@@ -53,15 +67,19 @@ public:
 	SDL_Point center;
 	iPoint position;
 	Mix_Chunk* shoot = nullptr;
-	
+
 	SDL_Rect top_base;
 	SDL_Rect blow;
+	SDL_Rect prev_bobble[8];
 	float orientationx, orientationy;
 	int Random;
 	bool LoseCondition = false;
 	unsigned int lastTime, currentTime;
 
 	States mystate;
+
+	
 };
+
 
 #endif

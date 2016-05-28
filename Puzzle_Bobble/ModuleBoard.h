@@ -8,7 +8,7 @@
 #include "ModuleSphere.h"
 #include "Application.h"
 
-#define NUM_SQUARES 90
+#define NUM_SQUARES 190
 
 class ModuleBoard : public Module
 {

@@ -7,6 +7,7 @@
 #include "ModulePlayer.h"
 #include "ModuleAudio.h"
 #include "ModuleCollision.h"
+#include "ModuleFonts.h"
 #include "SDL\include\SDL_render.h"
 #include "SDL\include\SDL_timer.h"
 
@@ -15,6 +16,7 @@
 #include <time.h>
 #include <stdlib.h> 
 #include <math.h>
+#include <stdio.h>
 
 #define PI 3.14159265
 
@@ -24,6 +26,18 @@ ModulePlayer::ModulePlayer()
 
 	position.x = 517;
 	position.y = 422;
+
+	position_next.x = 390;
+	position_next.y = 390;
+
+	position_wood.x = 380;
+	position_wood.y = 448;
+
+	next = { 761, 80, 27, 30 };
+	p_next = &next;
+
+	wood = { 758, 144, 32, 8 };
+	p_wood = &wood;
 
 	//initial position arrow
 
@@ -62,7 +76,7 @@ ModulePlayer::ModulePlayer()
 	base_left.PushBack({ 285, 874, 56, 24 });
 	base_left.speed = 0.0f;
 
-	
+
 
 	//Top base
 	top_base = { 27, 820, 34, 16 };
@@ -71,32 +85,41 @@ ModulePlayer::ModulePlayer()
 	blow = { 37, 869, 13, 11 };
 
 	//hurry up
-	hurry_up.PushBack({ 212, 1439, 32, 28 });
-	hurry_up.PushBack({ 248, 1439, 32, 28 });
-	hurry_up.PushBack({ 212, 1439, 32, 28 });
-	hurry_up.PushBack({ 284, 1439, 32, 28 });
-	hurry_up.PushBack({ 212, 1439, 32, 28 });
-	hurry_up.PushBack({ 320, 1439, 32, 28 });
-	hurry_up.PushBack({ 212, 1439, 32, 28 });
-	hurry_up.PushBack({ 356, 1439, 32, 28 });
-	hurry_up.PushBack({ 212, 1439, 32, 28 });
-	hurry_up.PushBack({ 392, 1439, 32, 28 });
-	hurry_up.PushBack({ 212, 1439, 32, 28 });
-	hurry_up.PushBack({ 428, 1439, 32, 28 });
+	hurry_up.PushBack({ 3, 10, 42, 29 });
+	hurry_up.PushBack({ 50, 10, 40, 29 });
+	hurry_up.PushBack({ 3, 10, 42, 29 });
+	hurry_up.PushBack({ 96, 10, 40, 29 });
+	hurry_up.PushBack({ 3, 10, 42, 29 });
+	hurry_up.PushBack({ 141, 10, 40, 29 });
+	hurry_up.PushBack({ 3, 10, 42, 29 });
+	hurry_up.PushBack({ 187, 10, 40, 29 });
+	hurry_up.PushBack({ 3, 10, 42, 29 });
+	hurry_up.PushBack({ 233, 10, 40, 29 });
+	hurry_up.PushBack({ 3, 10, 42, 29 });
+	hurry_up.PushBack({ 276, 10, 40, 29 });
+
 
 	hurry_up.loop = false;
 	hurry_up.speed = 0.04f;
 
 	mystate = PREUPDATE;
 	////////////////////////////////////////////////
+
+
+
+
+
+	////////////
 	dragonGraphics = NULL;
 	arrowGraphics = NULL;
+	spritesGraphics = NULL;
 
 	current_animationDragon = NULL;
 	current_animationMachine = NULL;
+	current_animationHurryup = NULL;
 
-	positionDragon.x = 105* SCREEN_SIZE;
-	positionDragon.y = 200* SCREEN_SIZE;
+	positionDragon.x = 105 * SCREEN_SIZE;
+	positionDragon.y = 200 * SCREEN_SIZE;
 
 	positionMachine.x = 125 * SCREEN_SIZE;
 	positionMachine.y = 188 * SCREEN_SIZE;
@@ -124,12 +147,29 @@ ModulePlayer::ModulePlayer()
 	idleDragon.PushBack({ 347, 692, 27, 32 });
 	idleDragon.loop = true;
 	idleDragon.speed = 0.05f;
+
+	jumpDragon.PushBack({});
+	jumpDragon.loop = true;
+	jumpDragon.speed = 0.05f;
+
+	//next bubble
+	prev_bobble[0] = { 71, 196, 16, 16 };
+	prev_bobble[1] = { 71, 300, 16, 16 }; // green
+	prev_bobble[2] = { 71, 248, 16, 16 };
+	prev_bobble[3] = { 71, 274, 16, 16 };
+	prev_bobble[4] = { 11, 222, 16, 16 }; // gray
+	prev_bobble[5] = { 11, 326, 16, 16 };
+	prev_bobble[6] = { 11, 352, 16, 16 };
+	prev_bobble[7] = { 11, 378, 16, 16 };
+
+	mystate = PREUPDATE;
 }
 
 ModulePlayer::~ModulePlayer()
 {
 	App->textures->Unload(dragonGraphics);
 	App->textures->Unload(arrowGraphics);
+	App->textures->Unload(spritesGraphics);
 
 }
 
@@ -140,8 +180,11 @@ bool ModulePlayer::Start()
 	mystate = FIRST;
 	arrowGraphics = App->textures->Load("Game/Puzzlebobble2/arrows.png");
 	dragonGraphics = App->textures->Load("Game/Puzzlebobble2/dragon.png");
+	spritesGraphics = App->textures->Load("Game/Puzzlebobble2/Hurryup.png");
 	shoot = App->audio->Load_effects("Game/PuzzleBobble2/twinkfx.wav");
-	//App->spheres->AddSphere(App->spheres->spheres[Random], 306, 368);
+	ballgraphics = App->textures->Load("Game/sprites.png");
+	
+
 	lastTime = SDL_GetTicks();
 
 	return true;
@@ -154,7 +197,9 @@ bool ModulePlayer::CleanUp()
 	angle = 0;
 	App->textures->Unload(dragonGraphics);
 	App->textures->Unload(arrowGraphics);
-
+	App->textures->Unload(spritesGraphics);
+	
+	
 	return true;
 }
 
@@ -167,19 +212,20 @@ bool ModulePlayer::CheckLose(){
 			return true;
 		}
 	}
-	
+
 	return false;
 }
 
 
 update_status ModulePlayer::PreUpdate(){
 
-	if (mystate == PREUPDATE){	
+	if (mystate == PREUPDATE){
 		LoseCondition = CheckLose();
-		
-		App->spheres->AddSphere(App->spheres->spheres[Random], 157 * SCREEN_SIZE, 192 * SCREEN_SIZE);  // position of the shooted balls.
-		//App->spheres->AddSphere(App->spheres->spheres[Random], 120 * SCREEN_SIZE, 200 * SCREEN_SIZE);
-		
+
+		App->spheres->AddSphere(App->spheres->spheres[Random], 157 * SCREEN_SIZE, 192 * SCREEN_SIZE);  // position of ball we are going to shoot.
+
+
+
 		mystate = UPDATE;
 	}
 	return update_status::UPDATE_CONTINUE;
@@ -187,100 +233,88 @@ update_status ModulePlayer::PreUpdate(){
 
 update_status ModulePlayer::Update()
 {
-	
+
 	int speed = 1;
 	current_animationDragon = &idleDragon;
 	current_animationMachine = &idleMachine;
-	
-		if (bobShot.Finished()){
-			bobShot.Reset();
+	current_animationHurryup = &hurry_up;
+
+	if (bobShot.Finished()){
+		bobShot.Reset();
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
 	{
-		/*if (current_animation1 != &right)
-		{
-			lever.speed = -0.4f;
-			base_left.speed = -0.4f;
-			right.speed=-0.4f;
-			current_animation1 = &right;
-		}*/
 
 		if (angle>-70.0)
 			angle -= 2.0;
 
 
-		/////
+
 
 
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
 	{
-		/*if (current_animation1 != &right)
-		{
-			lever.speed = 0.4f;
-			base_left.speed = 0.4f;
-			right.speed = 0.4f;
-			current_animation1 = &right;
-		}*/
+
 
 
 		if (angle<70.0)
 			angle += 2.0;
 
-		//////
+
 	}
 
-	
+
 
 	currentTime = SDL_GetTicks();
 
-	
+
 	if (App->input->keyboard[SDL_SCANCODE_S] == KEY_STATE::KEY_DOWN && App->spheres->next_sphere_left == true || currentTime - lastTime > 8000)
 	{
 
 		App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.x = (sin(angle*PI / 180)) * SPEED;
 		App->spheres->active_left[App->spheres->last_sphere_left - 1]->speed.y = -(cos(angle*PI / 180)) * SPEED;
 
-		/*if (current_animation2 != &bobShot)
-		{
-			current_animation2 = &bobShot;
-		}*/
-		Mix_PlayChannel(-1, shoot, 0);
+		
+		App->audio->PlayEffects(shoot);
 		App->spheres->next_sphere_left = false;
 		lastTime = currentTime;
 		hurry_up.Reset();
+		
 	}
 
-	if (currentTime - lastTime > 3000)
+	if (currentTime - lastTime > 600000)
 	{
 
-		/*current_animation3 = &hurry_up;
-		current_animation2 = &hurry_up_dragon;
-		App->render->Blit(graphics, position.x - 170 * SCREEN_SIZE, position.y - 35 * SCREEN_SIZE, &(current_animation3->GetCurrentFrame()));
-	*/}
+		current_animationHurryup = &hurry_up;
+
+		App->render->Blit(spritesGraphics, position.x - 172 * SCREEN_SIZE, position.y - 38 * SCREEN_SIZE, &(current_animationHurryup->GetCurrentFrame()));
+	}
 
 
 	if (App->input->keyboard[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE
 		&& App->input->keyboard[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE){
 
-		/*current_animation1 = &idle_right;
-		base_left.speed = 0.0f;
-		lever.speed = 0.0f;*/
+		
 	}
 
 
 	// Draw everything --------------------------------------
-	/*App->render->Blit(graphics, position.x - 111 * SCREEN_SIZE, position.y - 23 * SCREEN_SIZE, &top_base);
-	App->render->Blit(graphics, position.x - 126 * SCREEN_SIZE, position.y - 7 * SCREEN_SIZE, &(current_animation_BaseLeft->GetCurrentFrame()));
-	App->render->Blit(graphics, position.x - 82 * SCREEN_SIZE, position.y + 1 * SCREEN_SIZE, &(current_animation_lever->GetCurrentFrame()));
-	
-	App->render->Blit(graphics, position.x - 102 * SCREEN_SIZE, position.y, &blow);
-	*///	App->render->Blit(graphics, position.x - 50, position.y - 80, &(current_animation_arrow->GetCurrentFrame()));
+
 	App->render->Blit(dragonGraphics, positionDragon.x, positionDragon.y, &(current_animationDragon->GetCurrentFrame()));
 	App->render->Blit(arrowGraphics, positionMachine.x, positionMachine.y, &(current_animationMachine->GetCurrentFrame()));
 	SDL_RenderCopyEx(App->render->renderer, arrowGraphics, p_arrow_src, p_arrow_dst, angle, p_center, SDL_FLIP_NONE);
+	App->render->Blit(arrowGraphics, position_next.x, position_next.y, &next);
+	App->render->Blit(arrowGraphics, position_wood.x, position_wood.y, &wood);
+	App->render->Blit(ballgraphics, position.x - 63 * SCREEN_SIZE, position.y - 2 * SCREEN_SIZE, &prev_bobble[Random]); // bobble next
+	
+	// Draw UI (score) --------------------------------------
+	
+
+	// Draw text --------------------------------------------
+
 	return update_status::UPDATE_CONTINUE;
 }
 
@@ -305,7 +339,7 @@ update_status ModulePlayer::PostUpdate(){
 
 	}
 
-	 if (mystate == UPDATE){
+	if (mystate == UPDATE){
 		while (succes != true){
 			Random = rand() % 8;
 			for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++){

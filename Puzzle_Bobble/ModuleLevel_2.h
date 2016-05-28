@@ -1,5 +1,5 @@
-#ifndef __LEVEL_1_H__
-#define __LEVEL_1_H__
+#ifndef __LEVEL_2_H__
+#define __LEVEL_2_H__
 
 #include "Module.h"
 #include "Globals.h"
@@ -7,11 +7,11 @@
 
 struct SDL_Texture;
 
-class ModuleLevel_1 : public Module
+class ModuleLevel_2 : public Module
 {
 public:
-	ModuleLevel_1();
-	~ModuleLevel_1();
+	ModuleLevel_2();
+	~ModuleLevel_2();
 
 	bool Start();
 	update_status Update();
@@ -20,19 +20,13 @@ public:
 public:
 	SDL_Texture* graphics = nullptr;
 	SDL_Texture* graphics2 = nullptr;
-	
-	Mix_Music* level1_music = nullptr;
-	
-	SDL_Rect level1;
+	Mix_Music* level2_music = nullptr;
+	SDL_Rect level2;
 	SDL_Rect board;
 
-	int Font_level1 = -1;
-	
-			
 	/*Uint32 timeout = 0;
 	Uint32 congrats = 0;*/
 };
 
 
-#endif //__LEVEL_1_H__
-
+#endif //__LEVEL_2_H__

@@ -1,11 +1,14 @@
-#include "SDL_mixer\include\SDL_mixer.h"
-#pragma comment( lib, "SDL_mixer/libx86/SDL2_mixer.lib" )
-
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleAudio.h"
 
-ModuleAudio::ModuleAudio() : Module(){}
+ModuleAudio::ModuleAudio() : Module()
+{
+	audio = nullptr;
+
+	for (uint i = 0; i < MAX_FX; ++i)
+		effects[i] = nullptr;
+}
 
 ModuleAudio::~ModuleAudio(){}
 
@@ -15,54 +18,101 @@ bool ModuleAudio::Init()
 	LOG("Init Audio Library\n");
 	bool ret = true;
 
-	// Initialize the audio library 
 	int flags = MIX_INIT_OGG;
 	int init = Mix_Init(flags);
-
-	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 1, 1024);
+	Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, AUDIO_S16SYS, 2, 1024);
 
 	if ((init & flags) != flags)
 	{
 		LOG("Could not initialize Audio lib. Mix_Init: %s\n", Mix_GetError());
 		ret = false;
 	}
+
 	return ret;
+	
 }
 
 
 bool ModuleAudio::CleanUp()
 {
-	LOG("Freeing audio and and music library\n");
-
-	for (unsigned int i = 0; i < last_audio; i++)
-	Mix_FreeMusic(audio[i]);
-
-	for (unsigned int i = 0; i < last_effect; i++)
-		Mix_FreeChunk(effects[i]);
+	
+	LOG("Closing sounds and Mixer library");
 
 	Mix_CloseAudio();
-	Mix_Quit();// Close the audio library
-
+	Mix_Quit();
 	return true;
+	
+	
 }
 
 Mix_Music* const ModuleAudio:: Load_music(const char *path)
 {
-	Mix_Music* music = Mix_LoadMUS(path);
-	audio[last_audio++] = music;
-
 	LOG("Loading Music\n");
 
-	return music;
+	
+	audio = Mix_LoadMUS(path);
+
+	return audio;
 }
 
 Mix_Chunk* const ModuleAudio::Load_effects(const char *path)
 {
-	Mix_Chunk* effect = Mix_LoadWAV(path);
-	effects[last_effect++] = effect;
+	LOG("Loading FX\n");
+	
+	effects[last_effect] = Mix_LoadWAV(path);
 
-	LOG("Loading Music\n");
+	return effects[last_effect];
 
-	return effect;
+	
 }
+void ModuleAudio::UnloadAudio()
+{
+	Mix_FreeMusic(audio);
+
+	for (uint i = 0; i < MAX_FX; ++i)
+	if (effects[i] != nullptr)
+		Mix_FreeChunk(effects[i]);
+
+	last_effect = 0;
+}
+void ModuleAudio::PlayEffects(Mix_Chunk* fx)
+{
+	if (fx == NULL)
+	{
+		LOG("Error playing the FX");
+	}
+	else
+	{
+		Mix_PlayChannel(-1, fx, 0);
+	}
+}
+void ModuleAudio::MusicLoop(Mix_Music* music)
+{
+	if (music == NULL)
+	{
+		LOG("Error playing the music");
+	}
+	else
+	{
+		while (!Mix_FadeOutMusic(700) && Mix_PlayingMusic()) {
+			SDL_Delay(0);
+		}
+		Mix_PlayMusic(music, -1);
+	}
+}
+void ModuleAudio::PlayMusic(Mix_Music* music)
+{
+	if (music == NULL)
+	{
+		LOG("Error playing the music");
+	}
+	else
+	{
+		while (!Mix_FadeOutMusic(700) && Mix_PlayingMusic()) {
+			SDL_Delay(0);
+		}
+		Mix_PlayMusic(music, 1);
+	}
+}
+
 

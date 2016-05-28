@@ -19,9 +19,9 @@ public:
 
 public:
 	SDL_Texture* graphics = nullptr;
-	Mix_Music* level_music = nullptr;
+	Mix_Music* GO_music = nullptr;
 	SDL_Rect gameover;
-
+	
 };
 
 

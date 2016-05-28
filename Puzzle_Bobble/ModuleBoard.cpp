@@ -1,6 +1,6 @@
 #include"ModuleBoard.h"
 
-ModuleBoard::ModuleBoard()
+ModuleBoard::ModuleBoard()//parametritzar-- 
 {
 	int x, y;
 	int i = 0;
@@ -12,8 +12,7 @@ ModuleBoard::ModuleBoard()
 			for (x = 24 * SCREEN_SIZE - 16; x < 290 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//112
 			{
 				board.push_back(new iPoint(x, y));
-				//board[j]->x = x;
-				//board[j]->y = y;
+				
 				j++;
 			}
 		}
@@ -23,14 +22,14 @@ ModuleBoard::ModuleBoard()
 			for (x = 32 * SCREEN_SIZE - 16; x < 290 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//96
 			{
 				board.push_back(new iPoint(x, y));
-				//board[j]->x = x;
-				//board[j]->y = y;
+				
 				j++;
 			}
 		}
 		i++;
 	}
 }
+
 
 
 
@@ -82,8 +81,8 @@ void ModuleBoard::CheckPosition(Sphere* actual_sphere)
 }
 void ModuleBoard::CreateMap(int number[]){
 
-	int i = 0;
-	for (i= 0 ; i < NUM_SQUARES;i++)
+	int i;
+	for (i = 0 ; i < NUM_SQUARES;i++)
 	{
 		if (number[i] >= 0 && number[i] < 8){
 			App->spheres->SetSphere(App->spheres->spheres[number[i]], board[i]->x, board[i]->y, i);
