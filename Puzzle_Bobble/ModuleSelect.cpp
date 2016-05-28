@@ -24,7 +24,7 @@ ModuleSelect::ModuleSelect()
 	drake.loop = true;
 
 	Box.PushBack({ 5, 82, 101, 142 });
-	Box.PushBack({ 200, 82, 101, 142 });
+	Box.PushBack({ 200, 82, 0, 0 });
 	Box.speed = 0.05f;
 	Box.loop = true;
 

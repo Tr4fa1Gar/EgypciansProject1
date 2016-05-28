@@ -1,9 +1,34 @@
-﻿Build started 28/05/2016 13:20:23.
-     1>Project "C:\Users\Bordes\Desktop\BONA 28 maig\Puzzle_Bobble\SDL Game.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         SDL Game.vcxproj -> C:\Users\Bordes\Desktop\BONA 28 maig\Puzzle_Bobble\Debug\SDL3 Handout.exe
-     1>Done Building Project "C:\Users\Bordes\Desktop\BONA 28 maig\Puzzle_Bobble\SDL Game.vcxproj" (Build target(s)).
+﻿Build started 28/05/2016 13:30:39.
+     1>Project "C:\Users\Bordes\Documents\GitHub\EgypciansProject1\Puzzle_Bobble\SDL Game.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ModuleSelect.cpp
+         ModuleSelect.cpp
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\bordes\documents\github\egypciansproject1\puzzle_bobble\animation.h(36): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Bordes\Documents\GitHub\EgypciansProject1\Puzzle_Bobble\Debug\SDL3 Handout.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Bordes\Documents\GitHub\EgypciansProject1\Puzzle_Bobble\Debug\SDL3 Handout.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Bordes\Documents\GitHub\EgypciansProject1\Puzzle_Bobble\Debug\SDL3 Handout.lib" /MACHINE:X86 Debug\Application.obj
+         Debug\Globals.obj
+         Debug\ModuleBoard.obj
+         Debug\ModuleCollision.obj
+         Debug\ModuleFonts.obj
+         Debug\ModuleGameOver.obj
+         Debug\ModuleLevel_1.obj
+         Debug\Main.obj
+         Debug\ModuleAudio.obj
+         Debug\ModuleFadeToBlack.obj
+         Debug\ModuleInput.obj
+         Debug\ModuleLevel_2.obj
+         Debug\ModulePlayer.obj
+         Debug\ModuleRender.obj
+         Debug\ModuleSelect.obj
+         Debug\ModuleSphere.obj
+         Debug\ModuleStartScreen.obj
+         Debug\ModuleTextures.obj
+         Debug\ModuleWindow.obj
+         SDL Game.vcxproj -> C:\Users\Bordes\Documents\GitHub\EgypciansProject1\Puzzle_Bobble\Debug\SDL3 Handout.exe
+     1>Done Building Project "C:\Users\Bordes\Documents\GitHub\EgypciansProject1\Puzzle_Bobble\SDL Game.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.38
+Time Elapsed 00:00:00.65
