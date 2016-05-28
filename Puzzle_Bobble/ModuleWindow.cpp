@@ -43,8 +43,10 @@ bool ModuleWindow::Init()
 		if(WIN_FULLSCREEN_DESKTOP == true)
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 
-		window = SDL_CreateWindow("", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
-
+		window = SDL_CreateWindow("Puzzle Bobble 2", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
+		
+		image = SDL_LoadBMP_RW(SDL_RWFromFile("Game/puzzlebobble2/icon.bmp", "rb"), 1);
+		SDL_SetWindowIcon(window, image);
 		if(window == NULL)
 		{
 			LOG("Window could not be created! SDL_Error: %s\n", SDL_GetError());

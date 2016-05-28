@@ -27,6 +27,7 @@ public:
 
 	//The surface contained by the window
 	SDL_Surface* screen_surface = nullptr;
+	SDL_Surface* image = nullptr;
 };
 
 #endif // __ModuleWindow_H__
