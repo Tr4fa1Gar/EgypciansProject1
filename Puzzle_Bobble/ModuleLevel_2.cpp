@@ -13,6 +13,7 @@
 #include "ModuleStartScreen.h"
 #include "ModuleBoard.h"
 #include "ModuleGameOver.h"
+#include "ModuleGameplay.h"
 #include "ModuleFonts.h"
 #include "SDL\include\SDL.h"
 #include "SDL\include\SDL_render.h"
@@ -61,9 +62,7 @@ bool ModuleLevel_2::Start()
 	int map[NUM_SQUARES];
 
 	int ballmaps[] = { BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE,
-		BLUE, BLUE, RED, RED, RED, GREEN, GREEN, GREEN, GREEN, BLUE, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, GREEN, BLUE,
-		BLUE, RED, RED, RED, YELLOW, YELLOW, GREEN, GREEN, BLUE, BLUE, BLUE, YELLOW, YELLOW, YELLOW, GREEN, GREEN, BLUE, BLUE,
-		BLUE, RED, RED, YELLOW, YELLOW, YELLOW, GREEN, BLUE, BLUE, BLUE, BLUE, BLUE, YELLOW, GREEN, GREEN, GREEN, BLUE };
+		BLUE, BLUE, RED, RED, RED, GREEN, GREEN, GREEN, GREEN, BLUE, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, GREEN, BLUE };
 
 	int maxballs = sizeof(ballmaps) / sizeof(ballmaps[0]);
 	for (int i = 0; i < NUM_SQUARES; i++){
@@ -93,14 +92,16 @@ update_status ModuleLevel_2::Update()
 	{
 		App->player->timesDown = 1;
 		//top2->SetPos(0, 25);
-		App->fade->FadeToBlack(App->level_2, App->game_over, 1);
+		App->fade->FadeToBlack(App->level_2, (Module*)App->level_3, 1);
 	}
 	if (App->player->LoseCondition == true || /*SDL_TICKS_PASSED(SDL_GetTicks(), timeout) ||*/ App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)
 	{
-		/*App->player->timesDown = 1;
-		top2->SetPos(0, 25);*/
-		App->player->LoseCondition = false;
-		App->fade->FadeToBlack(App->level_2, App->game_over, 1);
+		if (SDL_GetTicks() - App->wlc->check_time >= 2000){
+			/*App->player->timesDown = 1;
+			top2->SetPos(0, 25);*/
+			App->player->LoseCondition = false;
+			App->fade->FadeToBlack(App->level_2, App->game_over, 1);
+		}
 	}
 	if (App->player->bobble_counter == App->player->bobble_down)
 	{
@@ -120,8 +121,7 @@ bool ModuleLevel_2::CleanUp()
 	App->textures->Unload(graphics2);
 
 	App->collision->Disable();
-	App->spheres->Disable();
-
+	
 
 
 	Mix_HaltMusic();

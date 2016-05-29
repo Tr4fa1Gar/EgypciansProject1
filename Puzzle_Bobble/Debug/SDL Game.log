@@ -1,14 +1,15 @@
-﻿Build started 29/05/2016 16:24:11.
+﻿Build started 29/05/2016 18:13:19.
      1>Project "C:\Users\Ramón\Desktop\EgypciansProject1-master\Puzzle_Bobble\SDL Game.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (SDL3 Handout.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ModuleLevel_2.cpp
-         ModuleLevel_2.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ModuleGameplay.cpp
+         ModuleGameplay.cpp
      1>c:\users\ramón\desktop\egypciansproject1-master\puzzle_bobble\globals.h(43): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\ramón\desktop\egypciansproject1-master\puzzle_bobble\globals.h(44): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\ramón\desktop\egypciansproject1-master\puzzle_bobble\animation.h(36): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Ramón\Desktop\EgypciansProject1-master\Puzzle_Bobble\Debug\PuzzleBobble2.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Ramón\Desktop\EgypciansProject1-master\Puzzle_Bobble\Debug\PuzzleBobble2.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Ramón\Desktop\EgypciansProject1-master\Puzzle_Bobble\Debug\PuzzleBobble2.lib" /MACHINE:X86 Debug\Application.obj
+         Debug\ModuleGameplay.obj
          Debug\Globals.obj
          Debug\ModuleBoard.obj
          Debug\ModuleCollision.obj
@@ -20,6 +21,7 @@
          Debug\ModuleFadeToBlack.obj
          Debug\ModuleInput.obj
          Debug\ModuleLevel_2.obj
+         Debug\ModuleLevel_3.obj
          Debug\ModulePlayer.obj
          Debug\ModuleRender.obj
          Debug\ModuleSelect.obj
@@ -32,4 +34,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.76
+Time Elapsed 00:00:01.20

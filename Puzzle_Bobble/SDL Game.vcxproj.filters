@@ -83,6 +83,12 @@
     <ClInclude Include="ModuleFonts.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleLevel_3.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleGameplay.h">
+      <Filter>Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -140,6 +146,12 @@
       <Filter>Levels</Filter>
     </ClCompile>
     <ClCompile Include="ModuleFonts.cpp">
+      <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleLevel_3.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleGameplay.cpp">
       <Filter>Modules</Filter>
     </ClCompile>
   </ItemGroup>

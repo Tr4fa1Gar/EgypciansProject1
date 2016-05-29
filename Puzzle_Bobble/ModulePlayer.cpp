@@ -281,7 +281,7 @@ update_status ModulePlayer::Update()
 		
 	}
 
-	if (currentTime - lastTime > 10000)
+	if (currentTime - lastTime > 3000)
 	{
 
 		current_animationHurryup = &hurry_up;

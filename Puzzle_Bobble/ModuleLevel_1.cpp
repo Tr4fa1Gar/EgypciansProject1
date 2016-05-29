@@ -13,6 +13,7 @@
 #include "ModuleStartScreen.h"
 #include "ModuleBoard.h"
 #include "ModuleGameOver.h"
+#include "ModuleGameplay.h"
 #include "ModuleFonts.h"
 #include "SDL\include\SDL.h"
 #include "SDL\include\SDL_render.h"
@@ -35,6 +36,7 @@ ModuleLevel_1::~ModuleLevel_1()
 
 bool ModuleLevel_1::Start()
 {
+	
 	App->board->CleanUp();
 	LOG("Loading background assets");
 	bool ret = true;
@@ -96,11 +98,15 @@ update_status ModuleLevel_1::Update()
 	
 	if (App->board->CheckWin() || App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
 	{
-		App->player->timesDown = 1;
-		top->SetPos(0, 25);
-		App->fade->FadeToBlack(App->level_1, App->level_2, 1);
+		if (SDL_GetTicks() - App->wlc->check_time >= 2000){
 
-		App->player->hurry_up.Reset();
+			App->player->timesDown = 1;
+			top->SetPos(0, 25);
+			App->fade->FadeToBlack(App->level_1, App->level_2, 1);
+
+			App->player->hurry_up.Reset();
+		}
+	
 	}
 	if (App->player->LoseCondition == true || /*SDL_TICKS_PASSED(SDL_GetTicks(), timeout) ||*/ App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)
 	{

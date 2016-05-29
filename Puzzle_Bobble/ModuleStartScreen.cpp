@@ -88,6 +88,7 @@ bool ModuleStartScreen::CleanUp()
 	
 	App->textures->Unload(graphics);
 	App->fonts->UnLoad(Font_credit);
+	App->spheres->CleanUp();
 	
 
 	return true;

@@ -7,9 +7,10 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleLevel_1.h"
 #include "ModuleLevel_2.h"
+#include "ModuleLevel_3.h"
 #include "ModuleStartScreen.h"
 #include "ModuleSelect.h"
-
+#include "ModuleGameplay.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
 #include "ModuleSphere.h"
@@ -32,12 +33,13 @@ Application::Application()
 	modules[i++] = select_screen = new ModuleSelect();
 	modules[i++] = level_1 = new ModuleLevel_1();
 	modules[i++] = level_2 = new ModuleLevel_2();
-	
+	modules[i++] = level_3 = new ModuleLevel_3();
 	modules[i++] = game_over = new ModuleGameOver();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = spheres = new ModuleSphere();
 	modules[i++] = collision = new ModuleCollision();
 	modules[i++] = board = new ModuleBoard();
+	modules[i++] = wlc = new ModuleGameplay();
 	modules[i++] = fade = new ModuleFadeToBlack();
 	
 }	
@@ -55,7 +57,7 @@ bool Application::Init()
 	App->select_screen->Disable();
 	App->level_1->Disable();
 	App->level_2->Disable();
-	
+	App->level_3->Disable();
 	App->player->Disable();
 	App->game_over->Disable();
 
