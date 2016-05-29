@@ -16,7 +16,7 @@ public:
 	ModuleBoard();
 	~ModuleBoard();
 	
-	bool Start();
+	bool Start(int num1, int num2, int num3, int num4);
 	void CheckPosition(Sphere* actual_sphere);
 	void CreateMap(int number[]);
 	bool CleanUp();
@@ -26,6 +26,10 @@ public:
 	int counter = 0;
 public:
 	Vector<iPoint*> board;
+	int num1 = 24;
+	int num2 = 290;
+	int num3 = 32;
+	int num4 = 290;
 
 };
 

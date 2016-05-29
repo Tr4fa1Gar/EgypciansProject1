@@ -20,6 +20,7 @@
 
 ModuleLevel_1::ModuleLevel_1()
 {
+	
 	level1 = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 	board.x = 0;
@@ -34,8 +35,14 @@ ModuleLevel_1::~ModuleLevel_1()
 
 bool ModuleLevel_1::Start()
 {
+	App->board->CleanUp();
 	LOG("Loading background assets");
 	bool ret = true;
+
+	App->board->num1 = 24;
+	App->board->num2 = 290;
+	App->board->num3 = 32;
+	App->board->num4 = 290;
 
 	App->spheres->Enable();
 	App->collision->Enable();
@@ -58,7 +65,7 @@ bool ModuleLevel_1::Start()
 	
 	int map[NUM_SQUARES];
 
-	int ballmaps[] = {VIOLET, VIOLET, VIOLET, VIOLET, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, 9, 9, 9, 9, 9, 9, 
+	int ballmaps[] = { BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, 9, 9, 9, 9, 9, 9,
 	 BLUE, BLUE, RED, RED, RED, GREEN, GREEN, GREEN, GREEN, BLUE, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, GREEN, BLUE ,
 	 BLUE, RED, RED, RED, YELLOW, YELLOW, GREEN, GREEN, BLUE, BLUE, BLUE, YELLOW, YELLOW, YELLOW, GREEN, GREEN, BLUE, BLUE, 
 	 BLUE, RED, RED, YELLOW, YELLOW, YELLOW, GREEN, BLUE, BLUE, BLUE, BLUE, BLUE, YELLOW, GREEN, GREEN, GREEN, BLUE };
@@ -71,7 +78,7 @@ bool ModuleLevel_1::Start()
 		}
 		else map[i] = 9;
 	}
-
+	App->board->Start(24, 290, 32, 290);
 	
 	
 	App->board->CreateMap(map);
@@ -89,12 +96,16 @@ update_status ModuleLevel_1::Update()
 	
 	if (App->board->CheckWin() || App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
 	{
+		App->player->timesDown = 1;
+		top->SetPos(0, 25);
 		App->fade->FadeToBlack(App->level_1, App->level_2, 1);
 
 		App->player->hurry_up.Reset();
 	}
 	if (App->player->LoseCondition == true || /*SDL_TICKS_PASSED(SDL_GetTicks(), timeout) ||*/ App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)
 	{
+		App->player->timesDown = 1;
+		top->SetPos(0, 25);
 		App->player->LoseCondition = false;
 		App->fade->FadeToBlack(App->level_1, App->game_over, 1);
 	}
@@ -113,7 +124,8 @@ bool ModuleLevel_1::CleanUp()
 {
 
 	LOG("Unloading lvl 1 background");
-
+	
+	
 	App->textures->Unload(graphics);
 	App->textures->Unload(graphics2);
 	App->fonts->UnLoad(Font_level1);
@@ -138,6 +150,6 @@ bool ModuleLevel_1::CleanUp()
 
 	App->spheres->lastSphere = 0;
 	App->level_1->Disable();
-
+	
 	return true;
 }

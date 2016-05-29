@@ -24,6 +24,7 @@ public:
 	SDL_Rect level2;
 	SDL_Rect board;
 
+	Collider* top2;
 	/*Uint32 timeout = 0;
 	Uint32 congrats = 0;*/
 };

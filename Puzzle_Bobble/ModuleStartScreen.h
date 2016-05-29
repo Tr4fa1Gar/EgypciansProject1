@@ -20,7 +20,7 @@ public:
 
 public:
 	char credit_score[10];
-	int cred_score = 1;
+	int cred_score = 0;
 	SDL_Texture* graphics = nullptr;
 	
 	SDL_Rect background;

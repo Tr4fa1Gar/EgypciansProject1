@@ -4,33 +4,36 @@
 #include <stdlib.h>
 
 ModuleBoard::ModuleBoard()
-{
-	int x, y;
+{/*int x, y;
 	int i = 0;
 	int j = 0;
-	for (y = 42 * SCREEN_SIZE - 16; j < NUM_SQUARES; y += 14 * SCREEN_SIZE)
+	for (y = 42 * SCREEN_SIZE - 16; j < NUM_SQUARES2; y += 14 * SCREEN_SIZE)
 	{
 		if (i % 2 == 0)
 		{
-			for (x = 24 * SCREEN_SIZE - 16; x < 290 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//112
+			for (x = 90 * SCREEN_SIZE - 16; x < 235 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//112
 			{
 				board.push_back(new iPoint(x, y));
-				
+
 				j++;
 			}
 		}
 
 		else
 		{
-			for (x = 32 * SCREEN_SIZE - 16; x < 290 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//96
+			for (x = 98 * SCREEN_SIZE - 16; x < 246 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//96
 			{
 				board.push_back(new iPoint(x, y));
-				
+
 				j++;
 			}
 		}
 		i++;
 	}
+	
+}
+*/
+	
 }
 
 
@@ -38,7 +41,36 @@ ModuleBoard::ModuleBoard()
 
 ModuleBoard::~ModuleBoard(){};
 
-bool ModuleBoard::Start(){ return true; };
+bool ModuleBoard::Start(int num1, int num2, int num3,int num4){ 
+	
+	
+	int x, y;
+	int i = 0;
+	int j = 0;
+	for (y = 42 * SCREEN_SIZE - 16; j < NUM_SQUARES; y += 14 * SCREEN_SIZE)
+	{
+		if (i % 2 == 0)
+		{
+			for (x = num1 * SCREEN_SIZE - 16; x < num2 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//112
+			{
+				board.push_back(new iPoint(x, y));
+
+				j++;
+			}
+		}
+
+		else
+		{
+			for (x = num3 * SCREEN_SIZE - 16; x < num4 * SCREEN_SIZE; x += 16 * SCREEN_SIZE)//96
+			{
+				board.push_back(new iPoint(x, y));
+
+				j++;
+			}
+		}
+		i++;
+	}
+	return true; };
 
 
 bool ModuleBoard::CleanUp()

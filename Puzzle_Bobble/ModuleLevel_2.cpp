@@ -8,17 +8,19 @@
 #include "ModuleAudio.h"
 #include "ModuleLevel_1.h"
 #include "ModuleLevel_2.h"
-
+#include "Animation.h"
 #include "ModulePlayer.h"
 #include "ModuleStartScreen.h"
 #include "ModuleBoard.h"
 #include "ModuleGameOver.h"
+#include "ModuleFonts.h"
 #include "SDL\include\SDL.h"
 #include "SDL\include\SDL_render.h"
 
 
 ModuleLevel_2::ModuleLevel_2()
 {
+	
 	level2 = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 	board.x = 0;
@@ -33,6 +35,14 @@ ModuleLevel_2::~ModuleLevel_2()
 
 bool ModuleLevel_2::Start()
 {
+	App->board->CleanUp();
+	
+	
+	App->board->num1 = 90;
+	App->board->num2 = 235;
+	App->board->num3 = 98;
+	App->board->num4 = 235;
+	
 	App->spheres->Enable();
 	App->collision->Enable();
 	App->player->Enable();
@@ -66,7 +76,7 @@ bool ModuleLevel_2::Start()
 	/*timeout = SDL_GetTicks() + 60000;
 	congrats = SDL_GetTicks() + 2000;*/
 
-	
+	App->board->Start(90, 235, 98, 235);
 	App->board->CreateMap(map);
 
 	
@@ -81,12 +91,20 @@ update_status ModuleLevel_2::Update()
 	if (App->board->CheckWin() || App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
 
 	{
+		App->player->timesDown = 1;
+		//top2->SetPos(0, 25);
 		App->fade->FadeToBlack(App->level_2, App->game_over, 1);
 	}
 	if (App->player->LoseCondition == true || /*SDL_TICKS_PASSED(SDL_GetTicks(), timeout) ||*/ App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)
 	{
+		/*App->player->timesDown = 1;
+		top2->SetPos(0, 25);*/
 		App->player->LoseCondition = false;
 		App->fade->FadeToBlack(App->level_2, App->game_over, 1);
+	}
+	if (App->player->bobble_counter == App->player->bobble_down)
+	{
+		//top2->SetPos(0, 25 + (15 * App->player->timesDown));
 	}
 
 
@@ -109,20 +127,20 @@ bool ModuleLevel_2::CleanUp()
 	Mix_HaltMusic();
 
 	
-	for (unsigned int i = 0; i < App->spheres->last_sphere_left; i++)
+	for (unsigned int i = 0; i < App->spheres->lastSphere; i++)
 	{
-		if (App->spheres->active_left[i] == nullptr)
+		if (App->spheres->active[i] == nullptr)
 			continue;
 
-		App->collision->EraseCollider(App->spheres->active_left[i]->collider);
+		App->collision->EraseCollider(App->spheres->active[i]->collider);
 
-		App->spheres->active_left[i]->collider = nullptr;
-		App->spheres->active_left[i] = nullptr;
+		App->spheres->active[i]->collider = nullptr;
+		App->spheres->active[i] = nullptr;
 	}
 
 
 
-	App->spheres->last_sphere_left = 0;
+	App->spheres->lastSphere = 0;
 	App->level_2->Disable();
 	App->player->Disable();
 
