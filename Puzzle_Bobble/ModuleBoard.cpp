@@ -1,4 +1,8 @@
 #include"ModuleBoard.h"
+#include "ModulePlayer.h"
+#include "ModuleLevel_1.h"
+#include "ModuleLevel_2.h"
+#include "ModuleLevel_3.h"
 #include <time.h>
 
 #include <stdlib.h>
@@ -145,17 +149,17 @@ bool ModuleBoard::CheckWin()
 void ModuleBoard::RoofDown(int &counter){
 
 	srand(time(NULL));
-	int random = 0;
+	
 	int i;
 	int x, y;
 	y = 42 * SCREEN_SIZE - 16;
 	for (i = 0; i < board.size(); i++){
-		board[i]->y += 14 * SCREEN_SIZE;
+		board[i]->y += 15 * SCREEN_SIZE;
 	}
 
 	for (i = 0; i < App->spheres->lastSphere; i++){
 		if (App->spheres->active[i] != nullptr){
-			App->spheres->active[i]->particlePosition.y += 14 * SCREEN_SIZE;
+			App->spheres->active[i]->particlePosition.y += 15 * SCREEN_SIZE;
 		}
 	}
 
@@ -171,5 +175,14 @@ void ModuleBoard::RoofDown(int &counter){
 		}
 	}
 
-
+	if (App->player->bobble_counter == App->player->bobble_down)
+	{
+		switch (Level)
+		{
+		case 1: App->level_1->top->SetPos(0, 25 + (15 * App->player->timesDown)); break;
+		case 2: App->level_2->top2->SetPos(72, 25 + (15 * App->player->timesDown)); break;
+		case 3: App->level_3->top3->SetPos(72, 25 + (15 * App->player->timesDown)); break; 
+		}
+		
+	}
 }

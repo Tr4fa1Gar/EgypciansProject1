@@ -49,9 +49,6 @@ bool ModuleStartScreen::Start()
 	Font_credit = App->fonts->Load("Game/Fonts/pbfonts1.png", "abcdefghijklmnopqrstuvwxyz ¿?CREDIT 0123456789", 1);
 
 	
-	
-	
-
 	return true;
 	
 }
@@ -61,6 +58,7 @@ update_status ModuleStartScreen::Update()
 	
 	App->render->Blit(graphics, 0, 0, &background);
 	App->fonts->BlitFont(245, 220, 0, "CREDIT");
+	sprintf_s(App->menu_screen->credit_score, 10, "%2d", App->menu_screen->cred_score);
 	
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	
@@ -73,7 +71,7 @@ update_status ModuleStartScreen::Update()
 
 		sprintf_s(App->menu_screen->credit_score, 10, "%2d", App->menu_screen->cred_score);
 		
-		//blit fonts
+
 		
 		App->audio->PlayEffects(coin);
 		
@@ -89,7 +87,7 @@ bool ModuleStartScreen::CleanUp()
 	App->textures->Unload(graphics);
 	App->fonts->UnLoad(Font_credit);
 	App->spheres->CleanUp();
-	
+	cred_score -= 1;
 
 	return true;
 }

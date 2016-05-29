@@ -36,7 +36,8 @@ bool ModuleSphere::Start()
 	
 	//////////////////////////////////////Collision scenary/////////////////////////////////////////////
 
-	
+	bounce = App->audio->Load_effects("Game/PuzzleBobble2/bouncefx.wav");
+	explosion = App->audio->Load_effects("Game/PuzzleBobble2/explosionfx.wav");
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	LOG("Loading particles");
@@ -529,11 +530,14 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
 
-			if (c2->type == COLLIDER_LATERAL_WALL)
+			if (c2->type == COLLIDER_LATERAL_WALL){
 				active[i]->speed.x *= -1;
+				App->audio->PlayEffects(bounce);
+			}
 
 			else if ((c2->type == COLLIDER_WALL || c2->type == COLLIDER_SPHERE) && active[i]->speed.y != 0)
 			{
+				App->audio->PlayEffects(bounce);
 				active[i]->speed.x = 0;
 				active[i]->speed.y = 0;
 				App->board->CheckPosition(active[lastSphere - 1]);
@@ -545,6 +549,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 
 				if (bubbleList.n_elements >= 3)
 				{
+					App->audio->PlayEffects(explosion);
 					checkDown = true;
 					for (i = 0; i < bubbleList.n_elements; i++)
 					{
@@ -618,10 +623,10 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					nextSphere = true;
 					if (App->player->bobble_down == App->player->bobble_counter)
 					{
-						
-						App->board->RoofDown(App->board->counter);
-						App->player->bobble_counter = 0;
 						App->player->timesDown++;
+						App->board->RoofDown(App->board->counter); 
+						App->player->bobble_counter = 0;
+						
 						
 					}
 				}

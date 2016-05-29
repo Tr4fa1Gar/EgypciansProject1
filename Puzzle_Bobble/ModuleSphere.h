@@ -7,6 +7,7 @@
 #include "Point.h"
 #include "ModuleCollision.h"
 #include "Vector.h"
+#include "ModuleAudio.h"
 
 #define MAX_ACTIVE_SPHERES 1000
 #define NUMBER_OF_SPHERES 8
@@ -120,6 +121,8 @@ public:
 	Particle* active_explosion[MAX_EXPLOSIONS];
 	
 	void OnCollision(Collider* c1, Collider* c2);
+	Mix_Chunk* bounce = nullptr;
+	Mix_Chunk* explosion = nullptr;
 };
 
 #endif // __MODULEPARTICLES_H__

@@ -29,6 +29,17 @@ ModuleLevel_1::ModuleLevel_1()
 	board.w = 424;
 	board.h = 232;
 
+	top_base.w = 424;
+	top_base = { 317, 163, 287, 15 };
+	top_base1 = { 317, 180, 287, 30 };
+	top_base2 = { 317, 212, 287, 45 };
+	top_base3 = { 317, 259, 287, 60 };
+	top_base4 = { 317, 321, 287, 75 };
+	top_base5 = { 317, 398, 287, 92 };
+	top_base6 = { 317, 492, 287, 107 };
+	top_base7 = { 317, 601, 287, 119 };
+	top_base8 = { 317, 722, 287, 134 };
+
 }
 
 ModuleLevel_1::~ModuleLevel_1()
@@ -36,7 +47,8 @@ ModuleLevel_1::~ModuleLevel_1()
 
 bool ModuleLevel_1::Start()
 {
-	
+	App->player->timesDown = 0;
+	App->board->Level = 1;
 	App->board->CleanUp();
 	LOG("Loading background assets");
 	bool ret = true;
@@ -52,6 +64,8 @@ bool ModuleLevel_1::Start()
 	
 	graphics = App->textures->Load("Game/puzzlebobble2/background_lvl1.png");
 	graphics2 = App->textures->Load("Game/puzzlebobble2/woodboard.png");
+
+	mechaGraphics = App->textures->Load("Game/puzzlebobble2/drake.png");
 
 	level1_music = App->audio->Load_music("Game/puzzlebobble2/background.ogg");
 	App->audio->MusicLoop(level1_music);
@@ -92,6 +106,7 @@ update_status ModuleLevel_1::Update()
 {
 	App->render->Blit(graphics, 0, 0, &level1);
 	App->render->Blit(graphics2, 0, 0, &board);
+
 	
 	App->fonts->BlitFont(0, 0, 0, "p¿");
 	App->fonts->BlitFont(150, 0, 0, "round ¿");
@@ -115,12 +130,38 @@ update_status ModuleLevel_1::Update()
 		App->player->LoseCondition = false;
 		App->fade->FadeToBlack(App->level_1, App->game_over, 1);
 	}
-	if (App->player->bobble_counter == App->player->bobble_down)
-	{
-		top->SetPos(0, 25 + (15 * App->player->timesDown));
-	}
 
+
+	p_topBase = &top_base;
+	if (App->player->timesDown == 1){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base);
+	}
+	if (App->player->timesDown == 2){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base1);
+	}
+	if (App->player->timesDown == 3){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base2);
+	}
+	if (App->player->timesDown == 4){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base3);
+	}
+	if (App->player->timesDown == 5){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base4);
+	}
+	if (App->player->timesDown == 6){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base5);
+	}
+	if (App->player->timesDown == 7){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base6);
+	}
+	if (App->player->timesDown == 8){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base7);
+	}
+	if (App->player->timesDown == 9){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base8);
+	}
 	
+
 
 	
 	return UPDATE_CONTINUE;
@@ -134,6 +175,7 @@ bool ModuleLevel_1::CleanUp()
 	
 	App->textures->Unload(graphics);
 	App->textures->Unload(graphics2);
+	App->textures->Unload(mechaGraphics);
 	App->fonts->UnLoad(Font_level1);
 	App->player->Disable();
 	App->collision->Disable();

@@ -80,7 +80,7 @@ public:
 
 	int bobble_down, bobble_counter;
 
-	int timesDown = 1;
+	int timesDown = 0;
 	
 };
 

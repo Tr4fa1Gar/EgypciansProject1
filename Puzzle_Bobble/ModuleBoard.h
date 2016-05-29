@@ -31,6 +31,8 @@ public:
 	int num3 = 32;
 	int num4 = 290;
 
+	int Level;
+
 };
 
 #endif

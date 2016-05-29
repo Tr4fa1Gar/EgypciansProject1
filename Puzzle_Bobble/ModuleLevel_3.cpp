@@ -8,12 +8,12 @@
 #include "ModuleAudio.h"
 #include "ModuleLevel_3.h"
 #include "ModuleBoard.h"
-//#include "ModuleCongrats.h"
+#include "ModuleCongrats.h"
 #include "ModulePlayer.h"
 #include "ModuleStartScreen.h"
 #include "ModuleGameOver.h"
 #include "ModuleGameplay.h"
-#include "SDL\include\SDL.h"
+#include "ModuleFonts.h"
 #include "SDL\include\SDL_render.h"
 
 
@@ -26,6 +26,17 @@ ModuleLevel_3::ModuleLevel_3()
 	board.w = 424;
 	board.h = 232;
 
+	top_base.w = 424;
+	top_base = { 136, 163, 154, 15 };
+	top_base1 = { 136, 180, 154, 30 };
+	top_base2 = { 136, 212, 154, 45 };
+	top_base3 = { 136, 259, 154, 60 };
+	top_base4 = { 136, 321, 154, 75 };
+	top_base5 = { 136, 398, 154, 92 };
+	top_base6 = { 136, 492, 154, 107 };
+	top_base7 = { 136, 601, 154, 119 };
+	top_base8 = { 136, 722, 154, 134 };
+
 }
 
 ModuleLevel_3::~ModuleLevel_3()
@@ -34,9 +45,12 @@ ModuleLevel_3::~ModuleLevel_3()
 bool ModuleLevel_3::Start()
 {
 
-	App->collision->AddCollider(SDL_Rect{ 70, 0, 12, 215 }, COLLIDER_LATERAL_WALL);	//Left 
+	App->player->timesDown = 0;
+	App->board->Level = 3;
+
+	App->collision->AddCollider(SDL_Rect{ 70, 25, 12, 215 }, COLLIDER_LATERAL_WALL);	//Left 
 	App->collision->AddCollider(SDL_Rect{ 252, 25, 12, 215 }, COLLIDER_LATERAL_WALL);//Right
-	App->collision->AddCollider(SDL_Rect{ 72, 25, 190, 8 }, COLLIDER_WALL);
+	top3 = App->collision->AddCollider(SDL_Rect{ 72, 25, 190, 8 }, COLLIDER_WALL);
 
 	App->collision->Enable();
 	int map[NUM_SQUARES];
@@ -55,8 +69,9 @@ bool ModuleLevel_3::Start()
 
 	graphics = App->textures->Load("Game/puzzlebobble2/background_lvl1.png");
 	graphics2 = App->textures->Load("Game/puzzlebobble2/2nd.png");
-
-	level_music = App->audio->Load_music("Game/puzzlebobble2/theme.ogg");
+	mechaGraphics = App->textures->Load("Game/Puzzlebobble2/drake.png");
+	level_music = App->audio->Load_music("Game/puzzlebobble2/quiqui.ogg");
+	Font_level3 = App->fonts->Load("Game/Fonts/pbfonts1.png", "abcdefghijklmnopqrstuvwxyz ¿?CREDIT0123456789", 1);
 
 	App->player->Enable();
 	App->board->CreateMap(map);
@@ -70,29 +85,53 @@ update_status ModuleLevel_3::Update()
 {
 	App->render->Blit(graphics, 0, 0, &level3);
 	App->render->Blit(graphics2, -100, 0, &board);
+	App->fonts->BlitFont(0, 0, 0, "p¿");
+	App->fonts->BlitFont(150, 0, 0, "round ");
 
 	if (App->board->CheckWin() || App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
 
 	{
 		if (SDL_GetTicks() - App->wlc->check_time >= 2000){
 			App->player->timesDown = 1;
-			//top2->SetPos(0, 25);
-			App->fade->FadeToBlack(App->level_3, App->game_over, 1);
+			
+			App->fade->FadeToBlack(App->level_3, App->congratulations, 1);
 		}
 	}
 	if (App->player->LoseCondition == true || /*SDL_TICKS_PASSED(SDL_GetTicks(), timeout) ||*/ App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)
 	{
-		/*App->player->timesDown = 1;
-		top2->SetPos(0, 25);*/
+		
 		App->player->LoseCondition = false;
 		App->fade->FadeToBlack(App->level_3, App->game_over, 1);
 	}
-	if (App->player->bobble_counter == App->player->bobble_down)
-	{
-		//top2->SetPos(0, 25 + (15 * App->player->timesDown));
+
+	p_topBase = &top_base;
+	if (App->player->timesDown == 1){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base);
 	}
-
-
+	if (App->player->timesDown == 2){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base1);
+	}
+	if (App->player->timesDown == 3){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base2);
+	}
+	if (App->player->timesDown == 4){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base3);
+	}
+	if (App->player->timesDown == 5){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base4);
+	}
+	if (App->player->timesDown == 6){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base5);
+	}
+	if (App->player->timesDown == 7){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base6);
+	}
+	if (App->player->timesDown == 8){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base7);
+	}
+	if (App->player->timesDown == 9){
+		App->render->Blit(mechaGraphics, 34, 68, &top_base8);
+	}
 
 	/*if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	{
@@ -112,7 +151,8 @@ bool ModuleLevel_3::CleanUp()
 
 	App->textures->Unload(graphics);
 	App->textures->Unload(graphics2);
-
+	App->fonts->UnLoad(Font_level3);
+	App->textures->Unload(mechaGraphics);
 	App->collision->Disable();
 
 

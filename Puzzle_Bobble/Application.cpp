@@ -10,6 +10,7 @@
 #include "ModuleLevel_3.h"
 #include "ModuleStartScreen.h"
 #include "ModuleSelect.h"
+#include "ModuleCongrats.h"
 #include "ModuleGameplay.h"
 #include "ModuleCollision.h"
 #include "ModulePlayer.h"
@@ -34,6 +35,7 @@ Application::Application()
 	modules[i++] = level_1 = new ModuleLevel_1();
 	modules[i++] = level_2 = new ModuleLevel_2();
 	modules[i++] = level_3 = new ModuleLevel_3();
+	modules[i++] = congratulations = new ModuleCongrats();
 	modules[i++] = game_over = new ModuleGameOver();
 	modules[i++] = player = new ModulePlayer();
 	modules[i++] = spheres = new ModuleSphere();
@@ -58,6 +60,7 @@ bool Application::Init()
 	App->level_1->Disable();
 	App->level_2->Disable();
 	App->level_3->Disable();
+	App->congratulations->Disable();
 	App->player->Disable();
 	App->game_over->Disable();
 
