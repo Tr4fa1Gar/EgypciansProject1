@@ -123,6 +123,7 @@ public:
 	void OnCollision(Collider* c1, Collider* c2);
 	Mix_Chunk* bounce = nullptr;
 	Mix_Chunk* explosion = nullptr;
+	Mix_Chunk* roof = nullptr;
 };
 
 #endif // __MODULEPARTICLES_H__

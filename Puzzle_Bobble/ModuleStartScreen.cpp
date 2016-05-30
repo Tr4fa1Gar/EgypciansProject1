@@ -46,8 +46,8 @@ bool ModuleStartScreen::Start()
 
 	coin = App->audio->Load_effects("Game/puzzlebobble2/coinfx.wav");
 	
-	Font_credit = App->fonts->Load("Game/Fonts/pbfonts1.png", "abcdefghijklmnopqrstuvwxyz ¿?CREDIT 0123456789", 1);
-
+	Font_credit = App->fonts->Load("Game/Fonts/pbfonts1.png", "abcdefghijklmnopqrstuvwxyz ¿?=)(/&%$·MCREDIT 0123456789", 1);
+	App->player->score = 0;
 	
 	return true;
 	
@@ -58,11 +58,13 @@ update_status ModuleStartScreen::Update()
 	
 	App->render->Blit(graphics, 0, 0, &background);
 	App->fonts->BlitFont(245, 220, 0, "CREDIT");
+	App->fonts->BlitFont(5, 220, 0, "TIME");
 	sprintf_s(App->menu_screen->credit_score, 10, "%2d", App->menu_screen->cred_score);
 	
 	if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
 	
 	{
+		if (cred_score >= 1)
 			App->fade->FadeToBlack(App->menu_screen, App->select_screen, 1);
 	}
 

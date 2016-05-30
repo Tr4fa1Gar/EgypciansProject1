@@ -46,7 +46,7 @@ int ModuleFonts::Load(const char* texture_path, const char* characters, uint row
 	}
 
 	fonts[id].graphic = tex;
-	strcpy_s(fonts[id].table, 46, "abcdefghijklmnopqrstuvwxyz ¿?CREDIT0123456789");
+	strcpy_s(fonts[id].table, 55, "abcdefghijklmnopqrstuvwxyz ¿?=)(/&%$·MCREDIT0123456789");
 
 
 	uint height, width;

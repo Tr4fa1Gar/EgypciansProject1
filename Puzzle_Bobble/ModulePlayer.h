@@ -67,6 +67,7 @@ public:
 	SDL_Point center;
 	iPoint position;
 	Mix_Chunk* shoot = nullptr;
+	Mix_Chunk* readygo = nullptr;
 
 /*	SDL_Rect top_base;
 	SDL_Rect blow;*/
@@ -81,7 +82,8 @@ public:
 	int bobble_down, bobble_counter;
 
 	int timesDown = 0;
-	
+	int score = 0;
+	char score_text[10];
 };
 
 

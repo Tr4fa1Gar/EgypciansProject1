@@ -89,6 +89,9 @@
     <ClInclude Include="ModuleGameplay.h">
       <Filter>Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleCongrats.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -153,6 +156,9 @@
     </ClCompile>
     <ClCompile Include="ModuleGameplay.cpp">
       <Filter>Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCongrats.cpp">
+      <Filter>Levels</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

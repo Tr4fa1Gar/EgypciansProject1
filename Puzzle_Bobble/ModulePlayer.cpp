@@ -185,8 +185,10 @@ bool ModulePlayer::Start()
 	spritesGraphics = App->textures->Load("Game/Puzzlebobble2/Hurryup.png");
 	shoot = App->audio->Load_effects("Game/PuzzleBobble2/twinkfx.wav");
 	ballgraphics = App->textures->Load("Game/sprites.png");
+	readygo = App->audio->Load_effects("Game/puzzlebobble2/readygo.wav");
+	App->audio->PlayEffects(readygo);
 	
-	bobble_down = 5;
+	bobble_down = 6;
 	bobble_counter = 0;
 	hurry_up.Reset();
 	lastTime = SDL_GetTicks();
@@ -251,7 +253,7 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
 	{
 
-		if (angle>-70.0)
+		if (angle>-80.0)
 			angle -= 2.0;
 
 	}
@@ -259,7 +261,7 @@ update_status ModulePlayer::Update()
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
 	{
 
-		if (angle<70.0)
+		if (angle<80.0)
 			angle += 2.0;
 
 	}

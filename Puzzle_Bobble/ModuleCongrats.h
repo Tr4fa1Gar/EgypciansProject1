@@ -19,7 +19,7 @@ public:
 
 public:
 	SDL_Texture* graphics = nullptr;
-	Mix_Music* level_music = nullptr;
+	Mix_Music* Congrats_music = nullptr;
 	SDL_Rect congrats;
 
 };

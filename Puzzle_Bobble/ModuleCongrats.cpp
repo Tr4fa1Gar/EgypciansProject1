@@ -6,7 +6,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleAudio.h"
-
+#include "ModulePlayer.h"
 #include "ModuleStartScreen.h"
 #include "ModuleCongrats.h"
 #include "ModuleGameOver.h"
@@ -21,13 +21,15 @@ ModuleCongrats::~ModuleCongrats()
 
 bool ModuleCongrats::Start()
 {
-	graphics = App->textures->Load("Game/congrats.png");
+	graphics = App->textures->Load("Game/puzzlebobble2/HighScore.png");
+	Congrats_music = App->audio->Load_music("Game/puzlebobble2/highscore.ogg");
 
-	if (Mix_PlayMusic(level_music, -1) == -1) {
+	if (Mix_PlayMusic(Congrats_music, -1) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
 
 	}
 	return true;
+	App->player->score = 0;
 }
 
 update_status ModuleCongrats::Update()
@@ -44,5 +46,6 @@ update_status ModuleCongrats::Update()
 
 bool ModuleCongrats::CleanUp()
 {
+	App->audio->UnloadAudio();
 	return true;
 }

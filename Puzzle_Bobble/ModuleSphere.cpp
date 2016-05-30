@@ -38,6 +38,7 @@ bool ModuleSphere::Start()
 
 	bounce = App->audio->Load_effects("Game/PuzzleBobble2/bouncefx.wav");
 	explosion = App->audio->Load_effects("Game/PuzzleBobble2/explosionfx.wav");
+	roof = App->audio->Load_effects("Game/PuzzleBobble2/roofdown.wav");
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	LOG("Loading particles");
@@ -556,6 +557,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 						bubbleList[i]->doomed = true;
 
 						App->board->board[bubbleList[i]->board_index]->Empty = true;
+						App->player->score += 20;
 					}
 
 				}
@@ -617,14 +619,16 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 					bubbleList.clear();
 					checkDown = false;
 				}
-
+				
 				if (App->player->mystate == POSTUPDATE){
 					App->player->mystate = PREUPDATE;
 					nextSphere = true;
 					if (App->player->bobble_down == App->player->bobble_counter)
 					{
 						App->player->timesDown++;
+						
 						App->board->RoofDown(App->board->counter); 
+						App->audio->PlayEffects(roof);
 						App->player->bobble_counter = 0;
 						
 						

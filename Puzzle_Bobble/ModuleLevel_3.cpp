@@ -15,7 +15,7 @@
 #include "ModuleGameplay.h"
 #include "ModuleFonts.h"
 #include "SDL\include\SDL_render.h"
-
+#include <stdio.h>
 
 ModuleLevel_3::ModuleLevel_3()
 {
@@ -44,7 +44,7 @@ ModuleLevel_3::~ModuleLevel_3()
 
 bool ModuleLevel_3::Start()
 {
-
+	App->board->CleanUp();
 	App->player->timesDown = 0;
 	App->board->Level = 3;
 
@@ -52,9 +52,14 @@ bool ModuleLevel_3::Start()
 	App->collision->AddCollider(SDL_Rect{ 252, 25, 12, 215 }, COLLIDER_LATERAL_WALL);//Right
 	top3 = App->collision->AddCollider(SDL_Rect{ 72, 25, 190, 8 }, COLLIDER_WALL);
 
-	App->collision->Enable();
+	
 	int map[NUM_SQUARES];
-	int ballmaps[] = { BLUE, BLUE, RED, RED, RED, BLUE, BLUE, RED, BLUE, BLUE, RED, BLUE, RED, BLUE, BLUE, RED, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, RED, RED, BLUE, BLUE, BLUE};
+
+	int ballmaps[] = { BLUE, BLUE, RED, VIOLET, VIOLET, GREEN, GREEN, GRAY, GRAY, BLACK,
+		GREEN, ORANGE, ORANGE, YELLOW, BLUE, BLUE, BLACK, YELLOW, BLUE, BLUE,
+		GRAY, GRAY, RED, GREEN, ORANGE, GREEN, GREEN, BLUE, YELLOW, YELLOW,
+		BLACK, GREEN, BLUE, GREEN, BLUE };
+
 	int maxballs = sizeof(ballmaps) / sizeof(ballmaps[0]);
 	for (int i = 0; i < NUM_SQUARES; i++){
 		if (i < maxballs){
@@ -71,10 +76,14 @@ bool ModuleLevel_3::Start()
 	graphics2 = App->textures->Load("Game/puzzlebobble2/2nd.png");
 	mechaGraphics = App->textures->Load("Game/Puzzlebobble2/drake.png");
 	level_music = App->audio->Load_music("Game/puzzlebobble2/quiqui.ogg");
-	Font_level3 = App->fonts->Load("Game/Fonts/pbfonts1.png", "abcdefghijklmnopqrstuvwxyz ¿?CREDIT0123456789", 1);
+	Font_level3 = App->fonts->Load("Game/Fonts/pbfonts1.png", "abcdefghijklmnopqrstuvwxyz ¿?=)(/&%$·MCREDIT0123456789", 1);
 
+	
+	App->collision->Enable();
 	App->player->Enable();
+	App->board->Start(90, 235, 98, 235);
 	App->board->CreateMap(map);
+
 	if (Mix_PlayMusic(level_music, -1) == -1) {
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
 	}
@@ -86,13 +95,17 @@ update_status ModuleLevel_3::Update()
 	App->render->Blit(graphics, 0, 0, &level3);
 	App->render->Blit(graphics2, -100, 0, &board);
 	App->fonts->BlitFont(0, 0, 0, "p¿");
-	App->fonts->BlitFont(150, 0, 0, "round ");
+	App->fonts->BlitFont(150, 0, 0, "round =");
+
+	sprintf_s(App->player->score_text, 10, "%7d", App->player->score);
+
+	App->fonts->BlitFont(50, 0, 0, App->player->score_text);
 
 	if (App->board->CheckWin() || App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
 
 	{
 		if (SDL_GetTicks() - App->wlc->check_time >= 2000){
-			App->player->timesDown = 1;
+			App->player->timesDown = 0;
 			
 			App->fade->FadeToBlack(App->level_3, App->congratulations, 1);
 		}
@@ -106,31 +119,31 @@ update_status ModuleLevel_3::Update()
 
 	p_topBase = &top_base;
 	if (App->player->timesDown == 1){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base);
 	}
 	if (App->player->timesDown == 2){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base1);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base1);
 	}
 	if (App->player->timesDown == 3){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base2);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base2);
 	}
 	if (App->player->timesDown == 4){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base3);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base3);
 	}
 	if (App->player->timesDown == 5){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base4);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base4);
 	}
 	if (App->player->timesDown == 6){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base5);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base5);
 	}
 	if (App->player->timesDown == 7){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base6);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base6);
 	}
 	if (App->player->timesDown == 8){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base7);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base7);
 	}
 	if (App->player->timesDown == 9){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base8);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base8);
 	}
 
 	/*if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
@@ -147,7 +160,7 @@ bool ModuleLevel_3::CleanUp()
 	App->player->Disable();
 
 
-	LOG("Unloading lvl 1 background");
+	LOG("Unloading lvl 3 background");
 
 	App->textures->Unload(graphics);
 	App->textures->Unload(graphics2);
@@ -172,7 +185,8 @@ bool ModuleLevel_3::CleanUp()
 
 
 	App->spheres->lastSphere = 0;
-
+	App->level_3->Disable();
+	App->spheres->Disable();
 	/*for (unsigned int i = 0; i < NUM_SQUARES; i++)
 	{
 	App->board2->board[i]->Empty = true;

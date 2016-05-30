@@ -8,6 +8,7 @@
 #include "ModuleAudio.h"
 #include "ModuleLevel_1.h"
 #include "ModuleLevel_2.h"
+#include "ModuleLevel_3.h"
 #include "Animation.h"
 #include "ModulePlayer.h"
 #include "ModuleStartScreen.h"
@@ -17,7 +18,7 @@
 #include "ModuleFonts.h"
 #include "SDL\include\SDL.h"
 #include "SDL\include\SDL_render.h"
-
+#include <stdio.h>
 
 ModuleLevel_2::ModuleLevel_2()
 {
@@ -31,14 +32,14 @@ ModuleLevel_2::ModuleLevel_2()
 
 	top_base.w = 424;
 	top_base = { 136, 163, 154, 15 };
-	top_base1 = { 136, 180, 154, 30 };
-	top_base2 = { 136, 212, 154, 45 };
-	top_base3 = { 136, 259, 154, 60 };
-	top_base4 = { 136, 321, 154, 75 };
-	top_base5 = { 136, 398, 154, 92 };
-	top_base6 = { 136, 492, 154, 107 };
-	top_base7 = { 136, 601, 154, 119 };
-	top_base8 = { 136, 722, 154, 134 };
+	top_base1 = { 136, 180,154, 30 };
+	top_base2 = { 136, 212,154, 45 };
+	top_base3 = { 136, 259,154, 60 };
+	top_base4 = { 136, 321,154, 75 };
+	top_base5 = { 136, 398,154, 92 };
+	top_base6 = { 136, 492,154, 107 };
+	top_base7 = { 136, 601,154, 119 };
+	top_base8 = { 136, 722,154, 134 };
 }
 
 ModuleLevel_2::~ModuleLevel_2()
@@ -55,7 +56,7 @@ bool ModuleLevel_2::Start()
 	App->board->num3 = 98;
 	App->board->num4 = 235;
 	
-	App->spheres->Enable();
+	
 	App->collision->Enable();
 	App->player->Enable();
 	graphics = App->textures->Load("Game/puzzlebobble2/background_lvl1.png");
@@ -66,7 +67,7 @@ bool ModuleLevel_2::Start()
 	level2_music = App->audio->Load_music("Game/puzzlebobble2/theme.ogg");
 	App->audio->MusicLoop(level2_music);
 
-	Font_level2 = App->fonts->Load("Game/Fonts/pbfonts1.png", "abcdefghijklmnopqrstuvwxyz ¿?CREDIT0123456789", 1);
+	Font_level2 = App->fonts->Load("Game/Fonts/pbfonts1.png", "abcdefghijklmnopqrstuvwxyz ¿?=)(/&%$·MCREDIT0123456789", 1);
 
 	App->level_2->Enable();
 
@@ -87,8 +88,7 @@ bool ModuleLevel_2::Start()
 		else map[i] = 9;
 	}
 
-	/*timeout = SDL_GetTicks() + 60000;
-	congrats = SDL_GetTicks() + 2000;*/
+	
 
 	App->board->Start(90, 235, 98, 235);
 	App->board->CreateMap(map);
@@ -104,12 +104,16 @@ update_status ModuleLevel_2::Update()
 	App->fonts->BlitFont(0, 0, 0, "p¿");
 	App->fonts->BlitFont(150, 0, 0, "round ?");
 
+	sprintf_s(App->player->score_text, 10, "%7d", App->player->score);
+
+	App->fonts->BlitFont(50, 0, 0, App->player->score_text);
+
 	if (App->board->CheckWin() || App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
 
 	{
-		App->player->timesDown = 1;
+		App->player->timesDown = 0;
 		
-		App->fade->FadeToBlack(App->level_2, (Module*)App->level_3, 1);
+		App->fade->FadeToBlack(App->level_2, App->level_3, 1);
 	}
 	if (App->player->LoseCondition == true || /*SDL_TICKS_PASSED(SDL_GetTicks(), timeout) ||*/ App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)
 	{
@@ -122,31 +126,31 @@ update_status ModuleLevel_2::Update()
 
 	p_topBase = &top_base;
 	if (App->player->timesDown == 1){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base);
 	}
 	if (App->player->timesDown == 2){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base1);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base1);
 	}
 	if (App->player->timesDown == 3){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base2);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base2);
 	}
 	if (App->player->timesDown == 4){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base3);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base3);
 	}
 	if (App->player->timesDown == 5){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base4);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base4);
 	}
 	if (App->player->timesDown == 6){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base5);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base5);
 	}
 	if (App->player->timesDown == 7){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base6);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base6);
 	}
 	if (App->player->timesDown == 8){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base7);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base7);
 	}
 	if (App->player->timesDown == 9){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base8);
+		App->render->Blit(mechaGraphics, 160, 70, &top_base8);
 	}
 
 	return UPDATE_CONTINUE;

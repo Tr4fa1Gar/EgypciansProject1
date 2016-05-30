@@ -1,5 +1,5 @@
 #include "Globals.h"
-#include "SDL/include/SDL.h"
+
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
@@ -17,7 +17,7 @@
 #include "ModuleFonts.h"
 #include "SDL\include\SDL.h"
 #include "SDL\include\SDL_render.h"
-
+#include <stdio.h>
 
 ModuleLevel_1::ModuleLevel_1()
 {
@@ -58,7 +58,7 @@ bool ModuleLevel_1::Start()
 	App->board->num3 = 32;
 	App->board->num4 = 290;
 
-	App->spheres->Enable();
+	
 	App->collision->Enable();
 
 	
@@ -70,7 +70,7 @@ bool ModuleLevel_1::Start()
 	level1_music = App->audio->Load_music("Game/puzzlebobble2/background.ogg");
 	App->audio->MusicLoop(level1_music);
 
-	Font_level1 = App->fonts->Load("Game/Fonts/pbfonts1.png", "abcdefghijklmnopqrstuvwxyz ¿?CREDIT0123456789", 1);
+	Font_level1 = App->fonts->Load("Game/Fonts/pbfonts1.png", "abcdefghijklmnopqrstuvwxyz ¿?=)(/&%$·MCREDIT0123456789", 1);
 
 	App->player->Enable();
 	App->level_1->Enable();
@@ -81,9 +81,9 @@ bool ModuleLevel_1::Start()
 	
 	int map[NUM_SQUARES];
 
-	int ballmaps[] = { BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, 9, 9, 9, 9, 9, 9,
-	 BLUE, BLUE, RED, RED, RED, GREEN, GREEN, GREEN, GREEN, BLUE, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, GREEN, BLUE ,
-	 BLUE, RED, RED, RED, YELLOW, YELLOW, GREEN, GREEN, BLUE, BLUE, BLUE, YELLOW, YELLOW, YELLOW, GREEN, GREEN, BLUE, BLUE, 
+	int ballmaps[] = { BLUE, BLUE, BLUE, BLUE, BLUE, GREEN, GREEN, GREEN, GREEN, BLUE, BLUE, BLUE, BLUE, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW,
+	 BLUE, BLUE, BLUE, BLUE, BLUE, RED, RED, RED, RED, YELLOW, YELLOW, YELLOW, YELLOW, RED, RED, RED, RED ,
+	 GREEN, GREEN, GREEN, GREEN, BLUE, BLUE, BLUE, BLUE, BLUE, GREEN, GREEN, GREEN, GREEN, GREEN, BLUE, BLUE, BLUE, BLUE, 
 	 BLUE, RED, RED, YELLOW, YELLOW, YELLOW, GREEN, BLUE, BLUE, BLUE, BLUE, BLUE, YELLOW, GREEN, GREEN, GREEN, BLUE };
 	
 	 
@@ -110,12 +110,15 @@ update_status ModuleLevel_1::Update()
 	
 	App->fonts->BlitFont(0, 0, 0, "p¿");
 	App->fonts->BlitFont(150, 0, 0, "round ¿");
+	sprintf_s(App->player->score_text, 10, "%7d", App->player->score);
+
+	App->fonts->BlitFont(50, 0, 0, App->player->score_text);
 	
 	if (App->board->CheckWin() || App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
 	{
 		if (SDL_GetTicks() - App->wlc->check_time >= 2000){
 
-			App->player->timesDown = 1;
+			App->player->timesDown = 0;
 			top->SetPos(0, 25);
 			App->fade->FadeToBlack(App->level_1, App->level_2, 1);
 

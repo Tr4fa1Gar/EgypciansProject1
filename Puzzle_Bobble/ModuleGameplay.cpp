@@ -24,7 +24,7 @@ ModuleGameplay::ModuleGameplay()
 	/* Win - Lose */
 	win = { 13, 300, 130, 47 };
 	lose = { 145, 308, 126, 36 };
-	congratulations = { 135, 24, 240, 32 };
+	congratulations = { 135, 24, 236, 32 };
 }
 
 ModuleGameplay::~ModuleGameplay()
@@ -67,7 +67,7 @@ void ModuleGameplay::Win()
 void ModuleGameplay::Congratulations()
 {
 	GameEnd = true;
-	App->render->Blit(graphics_c, 70 * SCREEN_SIZE, 50 * SCREEN_SIZE, &congratulations);
+	App->render->Blit(graphics_c, 48 * SCREEN_SIZE, 50 * SCREEN_SIZE, &congratulations);
 
 }
 
@@ -77,7 +77,7 @@ update_status ModuleGameplay::Update()
 {
 	if (App->player->IsEnabled())
 	{
-		if (App->board->CheckWin()|| App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN)
+		if (App->board->CheckWin()/*|| App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN*/)
 		{
 			if (App->level_3->IsEnabled()){
 				Congratulations();
