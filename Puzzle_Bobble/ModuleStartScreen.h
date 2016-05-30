@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "ModuleAudio.h"
+#include "Animation.h"
 
 struct SDL_Texture;
 
@@ -22,6 +23,7 @@ public:
 	char credit_score[10];
 	int cred_score = 0;
 	SDL_Texture* graphics = nullptr;
+	SDL_Texture* countdown = nullptr;
 	
 	SDL_Rect background;
 	SDL_Rect creditscreen;
@@ -30,6 +32,8 @@ public:
 	
 	int Font_credit = -1;
 	
+	Animation timer;
+	Animation* current_timer = nullptr;
 	
 };
 

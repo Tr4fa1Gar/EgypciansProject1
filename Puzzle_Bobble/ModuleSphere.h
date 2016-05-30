@@ -16,7 +16,7 @@ struct SDL_Texture;
 struct ColliderRect;
 enum COLLIDER_TYPE;
 
-enum Color { BLUE, GREEN, RED, YELLOW, GRAY, BLACK, ORANGE, VIOLET };
+enum Color { BLUE, GREEN, RED, YELLOW, GRAY, BLACK, ORANGE, VIOLET};
 
 struct Sphere
 {

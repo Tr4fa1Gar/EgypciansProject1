@@ -31,15 +31,15 @@ ModuleLevel_2::ModuleLevel_2()
 	board.h = 232;
 
 	top_base.w = 424;
-	top_base = { 136, 163, 154, 15 };
-	top_base1 = { 136, 180,154, 30 };
-	top_base2 = { 136, 212,154, 45 };
-	top_base3 = { 136, 259,154, 60 };
-	top_base4 = { 136, 321,154, 75 };
-	top_base5 = { 136, 398,154, 92 };
-	top_base6 = { 136, 492,154, 107 };
-	top_base7 = { 136, 601,154, 119 };
-	top_base8 = { 136, 722,154, 134 };
+	top_base = { 116, 163,184, 15 };
+	top_base1 = {116, 180,184, 30 };
+	top_base2 = {116, 212,184, 45 };
+	top_base3 = {116, 259,184, 60 };
+	top_base4 = {116, 321,184, 75 };
+	top_base5 = {116, 398,184, 92 };
+	top_base6 = {116, 492,184, 107 };
+	top_base7 = {116, 601,184, 119 };
+	top_base8 = {116, 722,184, 134 };
 }
 
 ModuleLevel_2::~ModuleLevel_2()
@@ -71,14 +71,16 @@ bool ModuleLevel_2::Start()
 
 	App->level_2->Enable();
 
-	App->collision->AddCollider(SDL_Rect{ 70, 25, 12, 215 }, COLLIDER_LATERAL_WALL);	//Left 
-	App->collision->AddCollider(SDL_Rect{ 252, 25, 12, 215 }, COLLIDER_LATERAL_WALL);//Right
+	left2 = App->collision->AddCollider(SDL_Rect{ 70, 25, 12, 215 }, COLLIDER_LEFT_WALL);	//Left 
+	right2 = App->collision->AddCollider(SDL_Rect{ 250, 25, 12, 215 }, COLLIDER_RIGHT_WALL);//Right
 	top2 = App->collision->AddCollider(SDL_Rect{ 72, 25, 190, 8 }, COLLIDER_WALL);
 
 	int map[NUM_SQUARES];
 
-	int ballmaps[] = { BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE,
-		BLUE, BLUE, RED, RED, RED, GREEN, GREEN, GREEN, GREEN, BLUE, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, GREEN, BLUE };
+	int ballmaps[] = { RED, RED, BLUE, BLUE, GREEN, BLUE, VIOLET, VIOLET, RED, GRAY,
+		RED, BLUE, GREEN, VIOLET, GREEN, VIOLET, BLUE, GRAY, GRAY, RED,
+		BLUE, RED, VIOLET, VIOLET, GREEN, BLUE, VIOLET, VIOLET, RED, GRAY,
+		RED, BLUE, GRAY, VIOLET, GRAY, GREEN, RED, GRAY, GRAY, RED };
 
 	int maxballs = sizeof(ballmaps) / sizeof(ballmaps[0]);
 	for (int i = 0; i < NUM_SQUARES; i++){
@@ -166,6 +168,7 @@ bool ModuleLevel_2::CleanUp()
 	App->textures->Unload(mechaGraphics);
 	App->fonts->UnLoad(Font_level2);
 	App->collision->Disable();
+	App->collision->EraseCollider(top2);
 	
 
 

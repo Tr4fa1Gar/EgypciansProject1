@@ -26,6 +26,8 @@ public:
 	SDL_Rect board;
 
 	Collider* top3;
+	Collider* left3;
+	Collider* right3;
 	int Font_level3 = -1;
 	Uint32 timeout = 0;
 	Uint32 congrats = 0;

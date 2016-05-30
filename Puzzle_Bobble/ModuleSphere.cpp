@@ -8,7 +8,8 @@
 
 #include "ModuleSphere.h"
 #include "ModulePlayer.h"
-
+#include <time.h>
+#include <stdlib.h>
 #include "SDL/include/SDL_timer.h"
 
 Particle::Particle()
@@ -364,27 +365,32 @@ update_status ModuleSphere::Update()
 	{
 		for (uint i = 0; i < MAX_ACTIVE_SPHERES; ++i)
 		{
-			Sphere* s_l = active[i];
-			
+			Sphere* s = active[i];
 
-			if (s_l == nullptr)
-				continue;
 
-			if (s_l->Update() == false || (s_l->speed.y>0 && s_l->particlePosition.y>SCREEN_HEIGHT*SCREEN_SIZE))
+			if (s != nullptr)
+			if (s->Update() == false || (s->speed.y>0 && s->particlePosition.y>SCREEN_HEIGHT*SCREEN_SIZE))
 			{
-				delete s_l;
+				delete s;
 				active[i] = nullptr;
 			}
-			else if (SDL_GetTicks() >= s_l->born)
+			else if (SDL_GetTicks() >= s->born)
 			{
-				App->render->Blit(graphics, s_l->particlePosition.x, s_l->particlePosition.y, &(s_l->idle.GetCurrentFrame()));
-				if (s_l->fx_played == false)
+				int random_time_l = rand() % 100;
+				if (random_time_l % 5 == 0)
 				{
-					s_l->fx_played = true;
+					if (s->idle.Finished())
+					{
+						s->idle.Reset();
+					}
+				}
+				App->render->Blit(graphics, s->particlePosition.x, s->particlePosition.y, &(s->idle.GetCurrentFrame()));
+				if (s->fx_played == false)
+				{
+					s->fx_played = true;
 				}
 			}
 
-			
 		}
 
 
@@ -531,7 +537,7 @@ void ModuleSphere::OnCollision(Collider* c1, Collider* c2)
 		if (active[i] != nullptr && active[i]->collider == c1)
 		{
 
-			if (c2->type == COLLIDER_LATERAL_WALL){
+			if (c2->type == COLLIDER_LEFT_WALL || c2->type == COLLIDER_RIGHT_WALL){
 				active[i]->speed.x *= -1;
 				App->audio->PlayEffects(bounce);
 			}

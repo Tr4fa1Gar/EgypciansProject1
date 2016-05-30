@@ -21,15 +21,17 @@ ModuleCongrats::~ModuleCongrats()
 
 bool ModuleCongrats::Start()
 {
+	
 	graphics = App->textures->Load("Game/puzzlebobble2/HighScore.png");
 	Congrats_music = App->audio->Load_music("Game/puzlebobble2/highscore.ogg");
-
-	if (Mix_PlayMusic(Congrats_music, -1) == -1) {
+	if (Mix_PlayMusic(Congrats_music, -1) == -1)
+	{
 		LOG("Mix_PlayMusic: %s\n", Mix_GetError());
-
 	}
-	return true;
+	App->audio->MusicLoop(Congrats_music);
+	
 	App->player->score = 0;
+	return true;
 }
 
 update_status ModuleCongrats::Update()
@@ -46,6 +48,7 @@ update_status ModuleCongrats::Update()
 
 bool ModuleCongrats::CleanUp()
 {
+	Mix_HaltMusic;
 	App->audio->UnloadAudio();
 	return true;
 }

@@ -26,6 +26,8 @@ public:
 	SDL_Rect board;
 
 	Collider* top2;
+	Collider* left2;
+	Collider* right2;
 	int Font_level2 = -1;
 	
 	SDL_Rect top_base;

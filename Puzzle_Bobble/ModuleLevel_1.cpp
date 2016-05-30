@@ -75,16 +75,16 @@ bool ModuleLevel_1::Start()
 	App->player->Enable();
 	App->level_1->Enable();
 
-	App->collision->AddCollider(SDL_Rect{ 0, 25, 16, 215 }, COLLIDER_LATERAL_WALL);	//Left 
-	App->collision->AddCollider(SDL_Rect{ 304, 25, 16, 215 }, COLLIDER_LATERAL_WALL);		//Right
+	left = App->collision->AddCollider(SDL_Rect{ 0, 25, 16, 215 }, COLLIDER_LEFT_WALL);	//Left 
+	right = App->collision->AddCollider(SDL_Rect{ 304, 25, 16, 215 }, COLLIDER_RIGHT_WALL);		//Right
 	top = App->collision->AddCollider(SDL_Rect{ 0, 25, 350, 8 }, COLLIDER_WALL);		//Top
 	
 	int map[NUM_SQUARES];
 
-	int ballmaps[] = { BLUE, BLUE, BLUE, BLUE, BLUE, GREEN, GREEN, GREEN, GREEN, BLUE, BLUE, BLUE, BLUE, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW,
-	 BLUE, BLUE, BLUE, BLUE, BLUE, RED, RED, RED, RED, YELLOW, YELLOW, YELLOW, YELLOW, RED, RED, RED, RED ,
-	 GREEN, GREEN, GREEN, GREEN, BLUE, BLUE, BLUE, BLUE, BLUE, GREEN, GREEN, GREEN, GREEN, GREEN, BLUE, BLUE, BLUE, BLUE, 
-	 BLUE, RED, RED, YELLOW, YELLOW, YELLOW, GREEN, BLUE, BLUE, BLUE, BLUE, BLUE, YELLOW, GREEN, GREEN, GREEN, BLUE };
+	int ballmaps[] = { GREEN, GREEN, GREEN, GREEN, YELLOW, YELLOW, YELLOW, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE,
+		BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, YELLOW, RED, YELLOW, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE, BLUE,
+	 BLUE, BLUE, GREEN, GREEN, RED, RED, RED, RED, GREEN, GREEN, GREEN, GREEN, YELLOW, YELLOW, YELLOW, YELLOW, BLUE, BLUE, 
+	 GREEN, GREEN, GREEN, YELLOW, YELLOW, YELLOW, RED, RED, RED, GREEN, GREEN, GREEN, RED, RED, RED, YELLOW, YELLOW };
 	
 	 
 	int maxballs = sizeof(ballmaps) / sizeof(ballmaps[0]);
@@ -120,10 +120,11 @@ update_status ModuleLevel_1::Update()
 
 			App->player->timesDown = 0;
 			top->SetPos(0, 25);
-			App->fade->FadeToBlack(App->level_1, App->level_2, 1);
-
-			App->player->hurry_up.Reset();
+			
 		}
+		App->fade->FadeToBlack(App->level_1, App->level_2, 1);
+
+		App->player->hurry_up.Reset();
 	
 	}
 	if (App->player->LoseCondition == true || /*SDL_TICKS_PASSED(SDL_GetTicks(), timeout) ||*/ App->input->keyboard[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)

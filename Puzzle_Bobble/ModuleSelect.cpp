@@ -19,8 +19,8 @@ ModuleSelect::ModuleSelect()
 	background = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 	selectscreen = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
-	drake.PushBack({ 0, 1, 51, 66 });
 	drake.PushBack({ 62, 1, 51, 66 });
+	drake.PushBack({ 0, 1, 51, 66 });
 	drake.speed = 0.05f;
 	drake.loop = true;
 
@@ -38,7 +38,7 @@ bool ModuleSelect::Start()
 {
 
 	selectAnimation = App->textures->Load("Game/puzzlebobble2/drake.png");
-	graphics = App->textures->Load("Game/puzzlebobble2/GameModeMenu.png");
+	graphics = App->textures->Load("Game/puzzlebobble2/GameModeMenu .png");
 	Font_select = App->fonts->Load("Game/Fonts/pbfonts1.png", "abcdefghijklmnopqrstuvwxyz ¿?=)(/&%$·MCREDIT0123456789", 1);
 
 	enter = App->audio->Load_effects("Game/puzzlebobble2/selectfx.wav");
@@ -46,9 +46,11 @@ bool ModuleSelect::Start()
 
 	select_music = App->audio->Load_music("Game/puzzlebobble2/modeselect.ogg");
 	App->audio->MusicLoop(select_music);
+
+	drakeshout = App->audio->Load_effects("Game/puzzlebobble2/drakeshout.wav");
 	
 	App->spheres->Enable();
-
+	Box.Reset();
 	return true;
 
 }
@@ -68,7 +70,9 @@ update_status ModuleSelect::Update()
 
 
 		App->audio->PlayEffects(enter);
-		App->fade->FadeToBlack(App->select_screen, App->level_1, 0.5f);
+		App->audio->PlayEffects(drakeshout);
+		App->fade->FadeToBlack(App->select_screen, App->level_1, 1.2f);
+		Box.speed = 0.5f;
 	}
 
 	

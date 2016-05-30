@@ -10,23 +10,30 @@ ModuleCollision::ModuleCollision()
 
 	matrix[COLLIDER_WALL][COLLIDER_WALL] = false;
 	matrix[COLLIDER_WALL][COLLIDER_SPHERE] = true;
-	matrix[COLLIDER_WALL][COLLIDER_LATERAL_WALL] = true;
-	matrix[COLLIDER_WALL][COLLIDER_SPHERE] = false;
+	matrix[COLLIDER_WALL][COLLIDER_RIGHT_WALL] = false;
+	matrix[COLLIDER_WALL][COLLIDER_LEFT_WALL] = false;
+
 
 	matrix[COLLIDER_SPHERE][COLLIDER_WALL] = true;
 	matrix[COLLIDER_SPHERE][COLLIDER_SPHERE] = true;
-	matrix[COLLIDER_SPHERE][COLLIDER_LATERAL_WALL] = true;
-	matrix[COLLIDER_SPHERE][COLLIDER_SPHERE] = true;
+	matrix[COLLIDER_SPHERE][COLLIDER_LEFT_WALL] = true;
+	matrix[COLLIDER_SPHERE][COLLIDER_RIGHT_WALL] = true;
 
-	matrix[COLLIDER_LATERAL_WALL][COLLIDER_WALL] = true;
-	matrix[COLLIDER_LATERAL_WALL][COLLIDER_SPHERE] = false;
-	matrix[COLLIDER_LATERAL_WALL][COLLIDER_LATERAL_WALL] = false;
-	matrix[COLLIDER_LATERAL_WALL][COLLIDER_SPHERE] = true;
+	matrix[COLLIDER_LEFT_WALL][COLLIDER_WALL] = false;
+	matrix[COLLIDER_LEFT_WALL][COLLIDER_SPHERE] = true;
+	matrix[COLLIDER_LEFT_WALL][COLLIDER_LEFT_WALL] = false;
+	matrix[COLLIDER_LEFT_WALL][COLLIDER_RIGHT_WALL] = false;
+
+
+	matrix[COLLIDER_RIGHT_WALL][COLLIDER_WALL] = false;
+	matrix[COLLIDER_RIGHT_WALL][COLLIDER_SPHERE] = true;
+	matrix[COLLIDER_RIGHT_WALL][COLLIDER_LEFT_WALL] = false;
+	
 
 	matrix[COLLIDER_LOSE][COLLIDER_LOSE] = false;
 	matrix[COLLIDER_LOSE][COLLIDER_SPHERE] = true;
 	matrix[COLLIDER_LOSE][COLLIDER_WALL] = false;
-	matrix[COLLIDER_LOSE][COLLIDER_SPHERE] = false;
+
 
 }
 
@@ -111,7 +118,10 @@ void ModuleCollision::DebugDraw()
 		case COLLIDER_WALL: // blue
 			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
 			break;
-		case COLLIDER_LATERAL_WALL: // green
+		case COLLIDER_RIGHT_WALL: // green
+			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
+			break;
+		case COLLIDER_LEFT_WALL: // green
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 			break;
 		case COLLIDER_SPHERE: // red

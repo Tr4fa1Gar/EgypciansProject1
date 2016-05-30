@@ -27,15 +27,15 @@ ModuleLevel_3::ModuleLevel_3()
 	board.h = 232;
 
 	top_base.w = 424;
-	top_base = { 136, 163, 154, 15 };
-	top_base1 = { 136, 180, 154, 30 };
-	top_base2 = { 136, 212, 154, 45 };
-	top_base3 = { 136, 259, 154, 60 };
-	top_base4 = { 136, 321, 154, 75 };
-	top_base5 = { 136, 398, 154, 92 };
-	top_base6 = { 136, 492, 154, 107 };
-	top_base7 = { 136, 601, 154, 119 };
-	top_base8 = { 136, 722, 154, 134 };
+	top_base =  { 116, 163, 184, 15 };
+	top_base1 = { 116, 180, 184, 30 };
+	top_base2 = { 116, 212, 184, 45 };
+	top_base3 = { 116, 259, 184, 60 };
+	top_base4 = { 116, 321, 184, 75 };
+	top_base5 = { 116, 398, 184, 92 };
+	top_base6 = { 116, 492, 184, 107 };
+	top_base7 = { 116, 601, 184, 119 };
+	top_base8 = { 116, 722, 184, 134 };
 
 }
 
@@ -48,8 +48,8 @@ bool ModuleLevel_3::Start()
 	App->player->timesDown = 0;
 	App->board->Level = 3;
 
-	App->collision->AddCollider(SDL_Rect{ 70, 25, 12, 215 }, COLLIDER_LATERAL_WALL);	//Left 
-	App->collision->AddCollider(SDL_Rect{ 252, 25, 12, 215 }, COLLIDER_LATERAL_WALL);//Right
+	left3 = App->collision->AddCollider(SDL_Rect{ 70, 25, 12, 215 }, COLLIDER_LEFT_WALL);	//Left 
+	right3 = App->collision->AddCollider(SDL_Rect{ 250, 25, 12, 215 }, COLLIDER_RIGHT_WALL);//Right
 	top3 = App->collision->AddCollider(SDL_Rect{ 72, 25, 190, 8 }, COLLIDER_WALL);
 
 	
@@ -167,6 +167,7 @@ bool ModuleLevel_3::CleanUp()
 	App->fonts->UnLoad(Font_level3);
 	App->textures->Unload(mechaGraphics);
 	App->collision->Disable();
+	App->collision->EraseCollider(top3);
 
 
 	//LEFT
@@ -194,6 +195,8 @@ bool ModuleLevel_3::CleanUp()
 
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
 		SDL_Delay(1000);
+
+	
 
 
 
