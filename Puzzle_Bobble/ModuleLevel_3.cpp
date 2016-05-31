@@ -146,11 +146,7 @@ update_status ModuleLevel_3::Update()
 		App->render->Blit(mechaGraphics, 160, 70, &top_base8);
 	}
 
-	/*if (App->input->keyboard[SDL_SCANCODE_SPACE] == 1)
-	{
 
-	App->fade->FadeToBlack(App->level_1, App->game_over, 1);
-	}*/
 	return UPDATE_CONTINUE;
 }
 

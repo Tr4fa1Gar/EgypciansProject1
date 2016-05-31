@@ -34,7 +34,7 @@ bool ModuleGameOver::Start()
 	graphics = App->textures->Load("Game/PuzzleBobble2/gameover.png");
 	GO_music = App->audio->Load_music("Game/PuzzleBobble2/gameover.ogg");
 	App->audio->PlayMusic(GO_music);
-	
+	App->player->score = 0;
 	
 	return true;
 }
