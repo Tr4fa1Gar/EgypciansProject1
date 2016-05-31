@@ -125,14 +125,26 @@ ModulePlayer::ModulePlayer()
 	positionMachine.y = 188 * SCREEN_SIZE;
 
 	idleMachine.PushBack({ 7, 260, 82, 44 });
-	idleMachine.PushBack({ 95, 260, 82, 44 });
-	idleMachine.PushBack({ 183, 260, 83, 44 });
-	idleMachine.PushBack({ 271, 260, 84, 44 });
-	idleMachine.PushBack({ 359, 260, 83, 44 });
-	idleMachine.PushBack({ 447, 260, 82, 44 });
-	idleMachine.loop = true;
+	idleMachine.loop = false;
 	idleMachine.speed = 0.05f;
 
+	rightMachine.PushBack({ 7, 260, 82, 44 });
+	rightMachine.PushBack({ 95, 260, 82, 44 });
+	rightMachine.PushBack({ 183, 260, 83, 44 });
+	rightMachine.PushBack({ 271, 260, 84, 44 });
+	rightMachine.PushBack({ 359, 260, 83, 44 });
+	rightMachine.PushBack({ 447, 260, 82, 44 });
+	rightMachine.loop = true;
+	rightMachine.speed = 0.4f;
+
+	leftMachine.PushBack({ 447, 260, 82, 44 });
+	leftMachine.PushBack({ 359, 260, 83, 44 });
+	leftMachine.PushBack({ 271, 260, 84, 44 });
+	leftMachine.PushBack({ 183, 260, 83, 44 });
+	leftMachine.PushBack({ 95, 260, 82, 44 });
+	leftMachine.PushBack({ 7, 260, 82, 44 });
+	leftMachine.loop = true;
+	leftMachine.speed = 0.4f;
 	// idle animation dragon
 	idleDragon.PushBack({ 347, 692, 27, 32 });
 	idleDragon.PushBack({ 384, 694, 27, 30 });
@@ -252,15 +264,16 @@ update_status ModulePlayer::Update()
 
 	if (App->input->keyboard[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
 	{
-
+		current_animationMachine = &leftMachine;
 		if (angle>-80.0)
 			angle -= 2.0;
+		
 
 	}
 
 	if (App->input->keyboard[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
 	{
-
+		current_animationMachine = &rightMachine;
 		if (angle<80.0)
 			angle += 2.0;
 

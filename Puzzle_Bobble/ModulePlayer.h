@@ -34,6 +34,8 @@ public:
 	Animation* current_animationHurryup = nullptr;
 
 	Animation idleMachine;
+	Animation rightMachine;
+	Animation leftMachine;
 	Animation idleDragon;
 	Animation jumpDragon;
 	Animation hurry_up;
