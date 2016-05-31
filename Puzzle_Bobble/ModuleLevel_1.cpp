@@ -18,6 +18,7 @@
 #include "SDL\include\SDL.h"
 #include "SDL\include\SDL_render.h"
 #include <stdio.h>
+#include "ModuleCongrats.h"
 
 ModuleLevel_1::ModuleLevel_1()
 {
@@ -132,7 +133,7 @@ update_status ModuleLevel_1::Update()
 		App->player->timesDown = 1;
 		top->SetPos(0, 25);
 		App->player->LoseCondition = false;
-		App->fade->FadeToBlack(App->level_1, App->game_over, 1);
+		App->fade->FadeToBlack(App->level_1, App->congratulations, 1);
 	}
 
 
@@ -153,16 +154,16 @@ update_status ModuleLevel_1::Update()
 		App->render->Blit(mechaGraphics, 34, 68, &top_base4);
 	}
 	if (App->player->timesDown == 6){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base5);
+		App->render->Blit(mechaGraphics, 34, 64, &top_base5);
 	}
 	if (App->player->timesDown == 7){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base6);
+		App->render->Blit(mechaGraphics, 34, 64, &top_base6);
 	}
 	if (App->player->timesDown == 8){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base7);
+		App->render->Blit(mechaGraphics, 34, 70, &top_base7);
 	}
 	if (App->player->timesDown == 9){
-		App->render->Blit(mechaGraphics, 34, 68, &top_base8);
+		App->render->Blit(mechaGraphics, 34, 70, &top_base8);
 	}
 	
 

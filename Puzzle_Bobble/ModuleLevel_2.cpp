@@ -16,6 +16,7 @@
 #include "ModuleGameOver.h"
 #include "ModuleGameplay.h"
 #include "ModuleFonts.h"
+#include "ModuleCongrats.h"
 #include "SDL\include\SDL.h"
 #include "SDL\include\SDL_render.h"
 #include <stdio.h>
@@ -122,7 +123,7 @@ update_status ModuleLevel_2::Update()
 		if (SDL_GetTicks() - App->wlc->check_time >= 2000){
 			
 			App->player->LoseCondition = false;
-			App->fade->FadeToBlack(App->level_2, App->game_over, 1);
+			App->fade->FadeToBlack(App->level_2, App->congratulations, 1);
 		}
 	}
 
@@ -143,16 +144,16 @@ update_status ModuleLevel_2::Update()
 		App->render->Blit(mechaGraphics, 160, 70, &top_base4);
 	}
 	if (App->player->timesDown == 6){
-		App->render->Blit(mechaGraphics, 160, 70, &top_base5);
+		App->render->Blit(mechaGraphics, 160, 66, &top_base5);
 	}
 	if (App->player->timesDown == 7){
-		App->render->Blit(mechaGraphics, 160, 70, &top_base6);
+		App->render->Blit(mechaGraphics, 160, 66, &top_base6);
 	}
 	if (App->player->timesDown == 8){
-		App->render->Blit(mechaGraphics, 160, 70, &top_base7);
+		App->render->Blit(mechaGraphics, 160, 72, &top_base7);
 	}
 	if (App->player->timesDown == 9){
-		App->render->Blit(mechaGraphics, 160, 70, &top_base8);
+		App->render->Blit(mechaGraphics, 160, 72, &top_base8);
 	}
 
 	return UPDATE_CONTINUE;

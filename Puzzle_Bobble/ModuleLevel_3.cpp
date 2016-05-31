@@ -134,16 +134,16 @@ update_status ModuleLevel_3::Update()
 		App->render->Blit(mechaGraphics, 160, 70, &top_base4);
 	}
 	if (App->player->timesDown == 6){
-		App->render->Blit(mechaGraphics, 160, 70, &top_base5);
+		App->render->Blit(mechaGraphics, 160, 66, &top_base5);
 	}
 	if (App->player->timesDown == 7){
-		App->render->Blit(mechaGraphics, 160, 70, &top_base6);
+		App->render->Blit(mechaGraphics, 160, 66, &top_base6);
 	}
 	if (App->player->timesDown == 8){
-		App->render->Blit(mechaGraphics, 160, 70, &top_base7);
+		App->render->Blit(mechaGraphics, 160, 72, &top_base7);
 	}
 	if (App->player->timesDown == 9){
-		App->render->Blit(mechaGraphics, 160, 70, &top_base8);
+		App->render->Blit(mechaGraphics, 160, 72, &top_base8);
 	}
 
 
@@ -166,7 +166,6 @@ bool ModuleLevel_3::CleanUp()
 	App->collision->EraseCollider(top3);
 
 
-	//LEFT
 	for (unsigned int i = 0; i < App->spheres->lastSphere; i++)
 	{
 		if (App->spheres->active[i] == nullptr)
@@ -184,10 +183,7 @@ bool ModuleLevel_3::CleanUp()
 	App->spheres->lastSphere = 0;
 	App->level_3->Disable();
 	App->spheres->Disable();
-	/*for (unsigned int i = 0; i < NUM_SQUARES; i++)
-	{
-	App->board2->board[i]->Empty = true;
-	}*/
+	
 
 	while (!Mix_FadeOutMusic(1000) && Mix_PlayingMusic())
 		SDL_Delay(1000);
