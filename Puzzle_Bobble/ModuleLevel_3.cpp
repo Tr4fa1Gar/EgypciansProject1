@@ -114,7 +114,7 @@ update_status ModuleLevel_3::Update()
 	{
 		
 		App->player->LoseCondition = false;
-		App->fade->FadeToBlack(App->level_3, App->game_over, 1);
+		App->fade->FadeToBlack(App->level_3, App->congratulations, 1);
 	}
 
 	p_topBase = &top_base;

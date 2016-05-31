@@ -50,7 +50,7 @@ bool ModuleSelect::Start()
 	drakeshout = App->audio->Load_effects("Game/puzzlebobble2/drakeshout.wav");
 	
 	App->spheres->Enable();
-	Box.Reset();
+	
 	return true;
 
 }
@@ -84,7 +84,8 @@ update_status ModuleSelect::Update()
 bool ModuleSelect::CleanUp()
 {
 
-	
+	Box.Reset();
+	Box.speed = 0.05f;
 	App->textures->Unload(graphics);
 	App->textures->Unload(selectAnimation);
 	App->fonts->UnLoad(Font_select);
