@@ -46,6 +46,8 @@ bool ModuleGameplay::Start()
 	LOG("Loading UI");
 	graphics_wl = App->textures->Load("Game/puzzlebobble2/typo.png");
 	graphics_c = App->textures->Load("Game/puzzlebobble2/drake.png");
+	pause = App->textures->Load("Game/puzzlebobble2/pause.png");
+	godm = App->textures->Load("Game/puzzlebobble2/godmode.png");
 
 	return true;
 }
@@ -88,8 +90,6 @@ update_status ModuleGameplay::Update()
 	{
 		if (App->player->pause == true){
 
-			pause = App->textures->Load("Game/puzzlebobble2/pause.png");
-			//p_pause = &pausing;
 			Mix_PauseMusic();
 			App->render->Blit(pause, 0, 0, &pausing);
 
@@ -98,14 +98,15 @@ update_status ModuleGameplay::Update()
 		else
 		{
 			Mix_ResumeMusic();
-			App->textures->Unload(pause);
+			
+			//App->textures->Unload(pause);
 		}
 		if (App->player->godmode == true){
-			godm = App->textures->Load("Game/puzzlebobble2/godmode.png");
+			
 			App->render->Blit(godm, 500, 1, &gmode);
 		}
-		else
-			App->textures->Unload(godm);
+		/*else
+			App->textures->Unload(godm);*/
 		if (App->board->CheckWin()/*|| App->input->keyboard[SDL_SCANCODE_W] == KEY_STATE::KEY_DOWN*/)
 		{
 			if (App->level_3->IsEnabled()){
