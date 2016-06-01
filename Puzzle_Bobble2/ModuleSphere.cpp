@@ -43,7 +43,7 @@ bool ModuleSphere::Start()
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	LOG("Loading particles");
-	graphics = App->textures->Load("Game/Sprites.png");
+	graphics = App->textures->Load("Game/puzzlebobble2/Sprites.png");
 
 
 	spheres[BLUE].idle.PushBack({ 11, 196, 16, 16 });
